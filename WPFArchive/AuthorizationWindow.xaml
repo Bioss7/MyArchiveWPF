@@ -1,0 +1,34 @@
+﻿<Window x:Class="WPFArchive.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFArchive"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="AuthorizationWindow" Height="387" Width="350" WindowStartupLocation="CenterScreen" FontFamily="Blooming Elegant Sans Regular" Visibility="Visible">
+
+    <Border CornerRadius="20" Margin="10" >
+        <StackPanel Margin="5">
+            <!--<iconPacks:PackIconMaterial Kind="Account" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Width="100" Height="100" />-->
+            <Image Source="C:\Users\firel\source\repos\WPFArchive\WPFArchive\Resources\icons8_умный_домашний_щит_64.png" Height="64" Width="64"/>
+            <Label Content="Вход в архив ТТИТ" HorizontalAlignment="Center" FontSize="18" FontFamily="Blooming Elegant Sans Regular" FontWeight="ExtraBold" Foreground="Black"/>
+
+            <Label Content="Логин:" FontSize="18" FontFamily="Blooming Elegant Sans Regular" Foreground="#afafae"/>
+            <TextBox BorderThickness="0" FontSize="18" Foreground="#afafae" FontFamily="Blooming Elegant Sans Regular" Background="Transparent" Style="{StaticResource btnW}" Tag="Login"/>
+            <Separator></Separator>
+            <Label Content="Пароль:" FontSize="18" FontFamily="Blooming Elegant Sans Regular" Foreground="#afafae"/>
+            <PasswordBox  BorderThickness="0" x:Name="PasswordTxt" FontSize="18" Password="Hello"></PasswordBox>
+
+            <Separator></Separator>
+
+            <Button Content="ВОЙТИ" Margin="20 10" Height="30" FontSize="18" Foreground="#ffffff" Background="#69a55a" FontFamily="Blooming Elegant Sans Regular" FontWeight="Bold" BorderThickness="0"/>
+            <Button Content="РЕГИСТРАЦИЯ" Margin="20 1" Height="30" FontSize="18" Foreground="#ffffff" Background="#69a55a" FontFamily="Blooming Elegant Sans Regular" FontWeight="Bold" BorderThickness="0"/>
+        </StackPanel>
+        
+    </Border>
+    
+    
+</Window>
+    
+    

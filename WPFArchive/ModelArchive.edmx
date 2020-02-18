@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DbArchiveModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicLeave">
+          <Key>
+            <PropertyRef Name="AcademicLeaveId" />
+          </Key>
+          <Property Name="AcademicLeaveId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdStudent" Type="int" />
+          <Property Name="DateAcademicLeave" Type="datetime" />
+          <Property Name="OrderNumber" Type="int" />
+          <Property Name="DateExpiration" Type="datetime" />
+          <Property Name="IdNumberGroup" Type="int" />
+        </EntityType>
+        <EntityType Name="Diploma">
+          <Key>
+            <PropertyRef Name="DiplomaId" />
+          </Key>
+          <Property Name="DiplomaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdStudent" Type="int" Nullable="false" />
+          <Property Name="Series" Type="int" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="RegistrationNumber" Type="int" Nullable="false" />
+          <Property Name="IdQualification" Type="int" Nullable="false" />
+          <Property Name="IdSpecialty" Type="int" Nullable="false" />
+          <Property Name="IdAcademicLeave" Type="int" />
+          <Property Name="ApplicationSeries" Type="int" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="int" Nullable="false" />
+          <Property Name="ApplicationDate" Type="datetime" Nullable="false" />
+          <Property Name="EnrollmentNumber" Type="int" Nullable="false" />
+          <Property Name="EnrollmentDate" Type="datetime" Nullable="false" />
+          <Property Name="ReleaseNumber" Type="int" Nullable="false" />
+          <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPerson" Type="int" Nullable="false" />
+          <Property Name="NumberReception" Type="int" Nullable="false" />
+          <Property Name="DateReception" Type="datetime" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberFired" Type="int" />
+          <Property Name="DateFired" Type="datetime" />
+          <Property Name="СauseFired" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GroupStudentNumber">
+          <Key>
+            <PropertyRef Name="GroupStudentNumberId" />
+          </Key>
+          <Property Name="GroupStudentNumberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberGroup" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Middlename" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateofBirth" Type="datetime" Nullable="false" />
+          <Property Name="IdPersonalDocument" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonalDocument">
+          <Key>
+            <PropertyRef Name="PersonalDocumentId" />
+          </Key>
+          <Property Name="PersonalDocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberPersonalDocument" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberInventory" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShelfLife" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="QualificationId" />
+          </Key>
+          <Property Name="QualificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameQualification" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Specialty">
+          <Key>
+            <PropertyRef Name="SpecialtyId" />
+          </Key>
+          <Property Name="SpecialtyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpecialtyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPerson" Type="int" Nullable="false" />
+          <Property Name="DateDeduction" Type="datetime" />
+          <Property Name="Reasonfordeduction" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumberGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AcademicLeave_GroupStudentNumber">
+          <End Role="GroupStudentNumber" Type="Self.GroupStudentNumber" Multiplicity="0..1" />
+          <End Role="AcademicLeave" Type="Self.AcademicLeave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupStudentNumber">
+              <PropertyRef Name="GroupStudentNumberId" />
+            </Principal>
+            <Dependent Role="AcademicLeave">
+              <PropertyRef Name="IdNumberGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcademicLeave_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="AcademicLeave" Type="Self.AcademicLeave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="AcademicLeave">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diploma_AcademicLeave">
+          <End Role="AcademicLeave" Type="Self.AcademicLeave" Multiplicity="0..1" />
+          <End Role="Diploma" Type="Self.Diploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicLeave">
+              <PropertyRef Name="AcademicLeaveId" />
+            </Principal>
+            <Dependent Role="Diploma">
+              <PropertyRef Name="IdAcademicLeave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diploma_Qualification">
+          <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
+          <End Role="Diploma" Type="Self.Diploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Qualification">
+              <PropertyRef Name="QualificationId" />
+            </Principal>
+            <Dependent Role="Diploma">
+              <PropertyRef Name="IdQualification" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diploma_Specialty">
+          <End Role="Specialty" Type="Self.Specialty" Multiplicity="1" />
+          <End Role="Diploma" Type="Self.Diploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialty">
+              <PropertyRef Name="SpecialtyId" />
+            </Principal>
+            <Dependent Role="Diploma">
+              <PropertyRef Name="IdSpecialty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diploma_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Diploma" Type="Self.Diploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Diploma">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_PersonalDocument">
+          <End Role="PersonalDocument" Type="Self.PersonalDocument" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonalDocument">
+              <PropertyRef Name="PersonalDocumentId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="IdPersonalDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_GroupStudentNumber">
+          <End Role="GroupStudentNumber" Type="Self.GroupStudentNumber" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupStudentNumber">
+              <PropertyRef Name="GroupStudentNumberId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="NumberGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IdPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DbArchiveModelContainer">
+          <EntitySet Name="AcademicLeave" EntityType="Self.AcademicLeave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diploma" EntityType="Self.Diploma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupStudentNumber" EntityType="Self.GroupStudentNumber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalDocument" EntityType="Self.PersonalDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Qualification" EntityType="Self.Qualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialty" EntityType="Self.Specialty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AcademicLeave_GroupStudentNumber" Association="Self.FK_AcademicLeave_GroupStudentNumber">
+            <End Role="GroupStudentNumber" EntitySet="GroupStudentNumber" />
+            <End Role="AcademicLeave" EntitySet="AcademicLeave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcademicLeave_Student" Association="Self.FK_AcademicLeave_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="AcademicLeave" EntitySet="AcademicLeave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diploma_AcademicLeave" Association="Self.FK_Diploma_AcademicLeave">
+            <End Role="AcademicLeave" EntitySet="AcademicLeave" />
+            <End Role="Diploma" EntitySet="Diploma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diploma_Qualification" Association="Self.FK_Diploma_Qualification">
+            <End Role="Qualification" EntitySet="Qualification" />
+            <End Role="Diploma" EntitySet="Diploma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diploma_Specialty" Association="Self.FK_Diploma_Specialty">
+            <End Role="Specialty" EntitySet="Specialty" />
+            <End Role="Diploma" EntitySet="Diploma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diploma_Student" Association="Self.FK_Diploma_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Diploma" EntitySet="Diploma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Person" Association="Self.FK_Employee_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_PersonalDocument" Association="Self.FK_Person_PersonalDocument">
+            <End Role="PersonalDocument" EntitySet="PersonalDocument" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_GroupStudentNumber" Association="Self.FK_Student_GroupStudentNumber">
+            <End Role="GroupStudentNumber" EntitySet="GroupStudentNumber" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Person" Association="Self.FK_Student_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbArchiveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcademicLeave">
+          <Key>
+            <PropertyRef Name="AcademicLeaveId" />
+          </Key>
+          <Property Name="AcademicLeaveId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdStudent" Type="Int32" />
+          <Property Name="DateAcademicLeave" Type="DateTime" Precision="3" />
+          <Property Name="OrderNumber" Type="Int32" />
+          <Property Name="DateExpiration" Type="DateTime" Precision="3" />
+          <Property Name="IdNumberGroup" Type="Int32" />
+          <NavigationProperty Name="GroupStudentNumber" Relationship="Self.FK_AcademicLeave_GroupStudentNumber" FromRole="AcademicLeave" ToRole="GroupStudentNumber" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_AcademicLeave_Student" FromRole="AcademicLeave" ToRole="Student" />
+          <NavigationProperty Name="Diploma" Relationship="Self.FK_Diploma_AcademicLeave" FromRole="AcademicLeave" ToRole="Diploma" />
+        </EntityType>
+        <EntityType Name="Diploma">
+          <Key>
+            <PropertyRef Name="DiplomaId" />
+          </Key>
+          <Property Name="DiplomaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdStudent" Type="Int32" Nullable="false" />
+          <Property Name="Series" Type="Int32" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="RegistrationNumber" Type="Int32" Nullable="false" />
+          <Property Name="IdQualification" Type="Int32" Nullable="false" />
+          <Property Name="IdSpecialty" Type="Int32" Nullable="false" />
+          <Property Name="IdAcademicLeave" Type="Int32" />
+          <Property Name="ApplicationSeries" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EnrollmentNumber" Type="Int32" Nullable="false" />
+          <Property Name="EnrollmentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReleaseNumber" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AcademicLeave" Relationship="Self.FK_Diploma_AcademicLeave" FromRole="Diploma" ToRole="AcademicLeave" />
+          <NavigationProperty Name="Qualification" Relationship="Self.FK_Diploma_Qualification" FromRole="Diploma" ToRole="Qualification" />
+          <NavigationProperty Name="Specialty" Relationship="Self.FK_Diploma_Specialty" FromRole="Diploma" ToRole="Specialty" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Diploma_Student" FromRole="Diploma" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPerson" Type="Int32" Nullable="false" />
+          <Property Name="NumberReception" Type="Int32" Nullable="false" />
+          <Property Name="DateReception" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberFired" Type="Int32" />
+          <Property Name="DateFired" Type="DateTime" Precision="3" />
+          <Property Name="СauseFired" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Employee_Person" FromRole="Employee" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="GroupStudentNumber">
+          <Key>
+            <PropertyRef Name="GroupStudentNumberId" />
+          </Key>
+          <Property Name="GroupStudentNumberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AcademicLeave" Relationship="Self.FK_AcademicLeave_GroupStudentNumber" FromRole="GroupStudentNumber" ToRole="AcademicLeave" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Student_GroupStudentNumber" FromRole="GroupStudentNumber" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdPersonalDocument" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Person" FromRole="Person" ToRole="Employee" />
+          <NavigationProperty Name="PersonalDocument" Relationship="Self.FK_Person_PersonalDocument" FromRole="Person" ToRole="PersonalDocument" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Student_Person" FromRole="Person" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="PersonalDocument">
+          <Key>
+            <PropertyRef Name="PersonalDocumentId" />
+          </Key>
+          <Property Name="PersonalDocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberPersonalDocument" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberInventory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShelfLife" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Person_PersonalDocument" FromRole="PersonalDocument" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="QualificationId" />
+          </Key>
+          <Property Name="QualificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameQualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Diploma" Relationship="Self.FK_Diploma_Qualification" FromRole="Qualification" ToRole="Diploma" />
+        </EntityType>
+        <EntityType Name="Specialty">
+          <Key>
+            <PropertyRef Name="SpecialtyId" />
+          </Key>
+          <Property Name="SpecialtyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecialtyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Diploma" Relationship="Self.FK_Diploma_Specialty" FromRole="Specialty" ToRole="Diploma" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPerson" Type="Int32" Nullable="false" />
+          <Property Name="DateDeduction" Type="DateTime" Precision="3" />
+          <Property Name="Reasonfordeduction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumberGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AcademicLeave" Relationship="Self.FK_AcademicLeave_Student" FromRole="Student" ToRole="AcademicLeave" />
+          <NavigationProperty Name="Diploma" Relationship="Self.FK_Diploma_Student" FromRole="Student" ToRole="Diploma" />
+          <NavigationProperty Name="GroupStudentNumber" Relationship="Self.FK_Student_GroupStudentNumber" FromRole="Student" ToRole="GroupStudentNumber" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Student_Person" FromRole="Student" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_AcademicLeave_GroupStudentNumber">
+          <End Role="GroupStudentNumber" Type="Self.GroupStudentNumber" Multiplicity="0..1" />
+          <End Role="AcademicLeave" Type="Self.AcademicLeave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupStudentNumber">
+              <PropertyRef Name="GroupStudentNumberId" />
+            </Principal>
+            <Dependent Role="AcademicLeave">
+              <PropertyRef Name="IdNumberGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcademicLeave_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="AcademicLeave" Type="Self.AcademicLeave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="AcademicLeave">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diploma_AcademicLeave">
+          <End Role="AcademicLeave" Type="Self.AcademicLeave" Multiplicity="0..1" />
+          <End Role="Diploma" Type="Self.Diploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicLeave">
+              <PropertyRef Name="AcademicLeaveId" />
+            </Principal>
+            <Dependent Role="Diploma">
+              <PropertyRef Name="IdAcademicLeave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diploma_Qualification">
+          <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
+          <End Role="Diploma" Type="Self.Diploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Qualification">
+              <PropertyRef Name="QualificationId" />
+            </Principal>
+            <Dependent Role="Diploma">
+              <PropertyRef Name="IdQualification" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diploma_Specialty">
+          <End Role="Specialty" Type="Self.Specialty" Multiplicity="1" />
+          <End Role="Diploma" Type="Self.Diploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialty">
+              <PropertyRef Name="SpecialtyId" />
+            </Principal>
+            <Dependent Role="Diploma">
+              <PropertyRef Name="IdSpecialty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diploma_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Diploma" Type="Self.Diploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Diploma">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_GroupStudentNumber">
+          <End Role="GroupStudentNumber" Type="Self.GroupStudentNumber" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupStudentNumber">
+              <PropertyRef Name="GroupStudentNumberId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="NumberGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_PersonalDocument">
+          <End Role="PersonalDocument" Type="Self.PersonalDocument" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonalDocument">
+              <PropertyRef Name="PersonalDocumentId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="IdPersonalDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IdPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbArchiveEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcademicLeave" EntityType="Self.AcademicLeave" />
+          <EntitySet Name="Diploma" EntityType="Self.Diploma" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="GroupStudentNumber" EntityType="Self.GroupStudentNumber" />
+          <EntitySet Name="Person" EntityType="Self.Person" />
+          <EntitySet Name="PersonalDocument" EntityType="Self.PersonalDocument" />
+          <EntitySet Name="Qualification" EntityType="Self.Qualification" />
+          <EntitySet Name="Specialty" EntityType="Self.Specialty" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <AssociationSet Name="FK_AcademicLeave_GroupStudentNumber" Association="Self.FK_AcademicLeave_GroupStudentNumber">
+            <End Role="GroupStudentNumber" EntitySet="GroupStudentNumber" />
+            <End Role="AcademicLeave" EntitySet="AcademicLeave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcademicLeave_Student" Association="Self.FK_AcademicLeave_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="AcademicLeave" EntitySet="AcademicLeave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diploma_AcademicLeave" Association="Self.FK_Diploma_AcademicLeave">
+            <End Role="AcademicLeave" EntitySet="AcademicLeave" />
+            <End Role="Diploma" EntitySet="Diploma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diploma_Qualification" Association="Self.FK_Diploma_Qualification">
+            <End Role="Qualification" EntitySet="Qualification" />
+            <End Role="Diploma" EntitySet="Diploma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diploma_Specialty" Association="Self.FK_Diploma_Specialty">
+            <End Role="Specialty" EntitySet="Specialty" />
+            <End Role="Diploma" EntitySet="Diploma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diploma_Student" Association="Self.FK_Diploma_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Diploma" EntitySet="Diploma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Person" Association="Self.FK_Employee_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_GroupStudentNumber" Association="Self.FK_Student_GroupStudentNumber">
+            <End Role="GroupStudentNumber" EntitySet="GroupStudentNumber" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_PersonalDocument" Association="Self.FK_Person_PersonalDocument">
+            <End Role="PersonalDocument" EntitySet="PersonalDocument" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Person" Association="Self.FK_Student_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DbArchiveModelContainer" CdmEntityContainer="DbArchiveEntities">
+          <EntitySetMapping Name="AcademicLeave">
+            <EntityTypeMapping TypeName="DbArchiveModel.AcademicLeave">
+              <MappingFragment StoreEntitySet="AcademicLeave">
+                <ScalarProperty Name="AcademicLeaveId" ColumnName="AcademicLeaveId" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="DateAcademicLeave" ColumnName="DateAcademicLeave" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="DateExpiration" ColumnName="DateExpiration" />
+                <ScalarProperty Name="IdNumberGroup" ColumnName="IdNumberGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diploma">
+            <EntityTypeMapping TypeName="DbArchiveModel.Diploma">
+              <MappingFragment StoreEntitySet="Diploma">
+                <ScalarProperty Name="DiplomaId" ColumnName="DiplomaId" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="IdQualification" ColumnName="IdQualification" />
+                <ScalarProperty Name="IdSpecialty" ColumnName="IdSpecialty" />
+                <ScalarProperty Name="IdAcademicLeave" ColumnName="IdAcademicLeave" />
+                <ScalarProperty Name="ApplicationSeries" ColumnName="ApplicationSeries" />
+                <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="EnrollmentNumber" ColumnName="EnrollmentNumber" />
+                <ScalarProperty Name="EnrollmentDate" ColumnName="EnrollmentDate" />
+                <ScalarProperty Name="ReleaseNumber" ColumnName="ReleaseNumber" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="DbArchiveModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="IdPerson" ColumnName="IdPerson" />
+                <ScalarProperty Name="NumberReception" ColumnName="NumberReception" />
+                <ScalarProperty Name="DateReception" ColumnName="DateReception" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="NumberFired" ColumnName="NumberFired" />
+                <ScalarProperty Name="DateFired" ColumnName="DateFired" />
+                <ScalarProperty Name="СauseFired" ColumnName="СauseFired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupStudentNumber">
+            <EntityTypeMapping TypeName="DbArchiveModel.GroupStudentNumber">
+              <MappingFragment StoreEntitySet="GroupStudentNumber">
+                <ScalarProperty Name="GroupStudentNumberId" ColumnName="GroupStudentNumberId" />
+                <ScalarProperty Name="NumberGroup" ColumnName="NumberGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="DbArchiveModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="IdPersonalDocument" ColumnName="IdPersonalDocument" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalDocument">
+            <EntityTypeMapping TypeName="DbArchiveModel.PersonalDocument">
+              <MappingFragment StoreEntitySet="PersonalDocument">
+                <ScalarProperty Name="PersonalDocumentId" ColumnName="PersonalDocumentId" />
+                <ScalarProperty Name="NumberPersonalDocument" ColumnName="NumberPersonalDocument" />
+                <ScalarProperty Name="NumberInventory" ColumnName="NumberInventory" />
+                <ScalarProperty Name="ShelfLife" ColumnName="ShelfLife" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Qualification">
+            <EntityTypeMapping TypeName="DbArchiveModel.Qualification">
+              <MappingFragment StoreEntitySet="Qualification">
+                <ScalarProperty Name="QualificationId" ColumnName="QualificationId" />
+                <ScalarProperty Name="NameQualification" ColumnName="NameQualification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialty">
+            <EntityTypeMapping TypeName="DbArchiveModel.Specialty">
+              <MappingFragment StoreEntitySet="Specialty">
+                <ScalarProperty Name="SpecialtyId" ColumnName="SpecialtyId" />
+                <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="DbArchiveModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="IdPerson" ColumnName="IdPerson" />
+                <ScalarProperty Name="DateDeduction" ColumnName="DateDeduction" />
+                <ScalarProperty Name="Reasonfordeduction" ColumnName="Reasonfordeduction" />
+                <ScalarProperty Name="NumberGroup" ColumnName="NumberGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
