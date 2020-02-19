@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DbArchiveModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DbArchiveModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AcademicLeave">
           <Key>
             <PropertyRef Name="AcademicLeaveId" />
@@ -30,11 +30,11 @@
           <Property Name="IdAcademicLeave" Type="int" />
           <Property Name="ApplicationSeries" Type="int" Nullable="false" />
           <Property Name="ApplicationNumber" Type="int" Nullable="false" />
-          <Property Name="ApplicationDate" Type="datetime" Nullable="false" />
+          <Property Name="ApplicationDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="EnrollmentNumber" Type="int" Nullable="false" />
-          <Property Name="EnrollmentDate" Type="datetime" Nullable="false" />
+          <Property Name="EnrollmentDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ReleaseNumber" Type="int" Nullable="false" />
-          <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
+          <Property Name="ReleaseDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -96,9 +96,13 @@
           </Key>
           <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPerson" Type="int" Nullable="false" />
-          <Property Name="DateDeduction" Type="datetime" />
+          <Property Name="DateDeduction" Type="datetime2" Precision="7" />
           <Property Name="Reasonfordeduction" Type="nvarchar" MaxLength="50" />
           <Property Name="NumberGroup" Type="int" Nullable="false" />
+          <Property Name="EnrollmentNumber" Type="int" />
+          <Property Name="EnrollmentDate" Type="datetime2" Precision="7" />
+          <Property Name="DeductionNumber" Type="int" />
+          <Property Name="DeductionDate" Type="datetime2" Precision="7" />
         </EntityType>
         <Association Name="FK_AcademicLeave_GroupStudentNumber">
           <End Role="GroupStudentNumber" Type="Self.GroupStudentNumber" Multiplicity="0..1" />
@@ -271,8 +275,7 @@
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbArchiveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -304,11 +307,11 @@
           <Property Name="IdAcademicLeave" Type="Int32" />
           <Property Name="ApplicationSeries" Type="Int32" Nullable="false" />
           <Property Name="ApplicationNumber" Type="Int32" Nullable="false" />
-          <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="EnrollmentNumber" Type="Int32" Nullable="false" />
-          <Property Name="EnrollmentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EnrollmentDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ReleaseNumber" Type="Int32" Nullable="false" />
-          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="AcademicLeave" Relationship="Self.FK_Diploma_AcademicLeave" FromRole="Diploma" ToRole="AcademicLeave" />
           <NavigationProperty Name="Qualification" Relationship="Self.FK_Diploma_Qualification" FromRole="Diploma" ToRole="Qualification" />
           <NavigationProperty Name="Specialty" Relationship="Self.FK_Diploma_Specialty" FromRole="Diploma" ToRole="Specialty" />
@@ -383,13 +386,17 @@
           </Key>
           <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdPerson" Type="Int32" Nullable="false" />
-          <Property Name="DateDeduction" Type="DateTime" Precision="3" />
+          <Property Name="DateDeduction" Type="DateTime" Precision="7" />
           <Property Name="Reasonfordeduction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NumberGroup" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AcademicLeave" Relationship="Self.FK_AcademicLeave_Student" FromRole="Student" ToRole="AcademicLeave" />
           <NavigationProperty Name="Diploma" Relationship="Self.FK_Diploma_Student" FromRole="Student" ToRole="Diploma" />
           <NavigationProperty Name="GroupStudentNumber" Relationship="Self.FK_Student_GroupStudentNumber" FromRole="Student" ToRole="GroupStudentNumber" />
           <NavigationProperty Name="Person" Relationship="Self.FK_Student_Person" FromRole="Student" ToRole="Person" />
+          <Property Name="EnrollmentNumber" Type="Int32" />
+          <Property Name="EnrollmentDate" Type="DateTime" Precision="7" />
+          <Property Name="DeductionNumber" Type="Int32" />
+          <Property Name="DeductionDate" Type="DateTime" Precision="7" />
         </EntityType>
         <Association Name="FK_AcademicLeave_GroupStudentNumber">
           <End Role="GroupStudentNumber" Type="Self.GroupStudentNumber" Multiplicity="0..1" />
@@ -664,6 +671,10 @@
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="DbArchiveModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="DeductionDate" ColumnName="DeductionDate" />
+                <ScalarProperty Name="DeductionNumber" ColumnName="DeductionNumber" />
+                <ScalarProperty Name="EnrollmentDate" ColumnName="EnrollmentDate" />
+                <ScalarProperty Name="EnrollmentNumber" ColumnName="EnrollmentNumber" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="IdPerson" ColumnName="IdPerson" />
                 <ScalarProperty Name="DateDeduction" ColumnName="DateDeduction" />

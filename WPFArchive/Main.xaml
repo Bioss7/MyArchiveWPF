@@ -66,6 +66,8 @@
                 <ColumnDefinition Width="174*"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
+                <!--Отчисленные-->
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
@@ -110,8 +112,8 @@
             <!--Выпускник-->
             <Grid x:Name="Grid1" Grid.Column="2"  Visibility="{Binding IsChecked, ElementName=check1, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.ColumnSpan="2" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="124*"/>
-                    <RowDefinition Height="242*"/>
+                    <RowDefinition Height="200*"/>
+                    <RowDefinition Height="250*"/>
                     <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -150,7 +152,7 @@
                         <ComboBox x:Name="QualificationCB" ItemsSource="{Binding Qualification}" DisplayMemberPath="NameQualification" SelectedValuePath="QualificationId" SelectedValue="{Binding Path=QualificationId}" Margin="5 0 5 5"/>
                         <TextBlock Text="Специальность:" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                         <ComboBox x:Name="SpecialtyCB" ItemsSource="{Binding Specialty}" DisplayMemberPath="SpecialtyName" SelectedValuePath="SpecialtyId" SelectedValue="{Binding Path=SpecialtyId}" Margin="5 0 5 5"/>
-                        <CheckBox Content="Академический отпуск" HorizontalAlignment="Left" Margin="5 0 5 5" />
+                        <CheckBox x:Name="CheckVacation1" Click="CheckVacation1_Click" Content="Академический отпуск" HorizontalAlignment="Left" Margin="5 0 5 5" />
 
 
                     </StackPanel>
@@ -181,19 +183,19 @@
                     <GroupBox Header="Приказ о приеме" Margin="5">
                         <StackPanel>
                             <TextBlock Text="Номер №:" Margin="5 5 5 0"/>
-                            <TextBox Margin="5 0 5 5"/>
+                            <TextBox x:Name="NumberReceptionTB" Margin="5 0 5 5"/>
                             <TextBlock Text="Дата:" Margin="5 5 5 0"/>
-                            <DatePicker Margin="5 0 5 5"/>
+                            <DatePicker x:Name="DateReceptionDP" Margin="5 0 5 5"/>
                             <TextBlock Text="Должность:" Margin="5 5 5 0"/>
-                            <TextBox Margin="5 0 5 5"/>
+                            <TextBox x:Name="PositionTB" Margin="5 0 5 5"/>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Приказ об увольнение" Margin="5">
                         <StackPanel>
                             <TextBlock Text="Номер №:" Margin="5 5 5 0"/>
-                            <TextBox Margin="5 0 5 5"/>
+                            <TextBox x:Name="NumberFiredTB" Margin="5 0 5 5"/>
                             <TextBlock Text="Дата:" Margin="5 5 5 0"/>
-                            <DatePicker Margin="5 0 5 5"/>
+                            <DatePicker x:Name="DateFiredDP" Margin="5 0 5 5"/>
 
                         </StackPanel>
                     </GroupBox>
@@ -207,9 +209,51 @@
                 <Grid Grid.Row="0" Grid.Column="1">
                     <GroupBox Header="Причина увольнения: " Margin="0 5 5 5">
                         <Grid>
-                            <TextBox HorizontalAlignment="Stretch" TextWrapping="Wrap" MinWidth="400" MinHeight="200" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                            <TextBox x:Name="СauseFired" HorizontalAlignment="Stretch" TextWrapping="Wrap" MinWidth="400" MinHeight="200" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                         </Grid>
                     </GroupBox>
+                </Grid>
+            </Grid>
+            <!--Отчисленные-->
+            <Grid x:Name="Grid3" Grid.Column="3" Visibility="{Binding IsChecked, ElementName=check2, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120*"/>
+                        <RowDefinition Height="199*"/>
+                        <RowDefinition Height="20*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200*"/>
+                            <ColumnDefinition Width="200*"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Приказ о зачислении" Margin="5" Grid.Row="0" Grid.Column="0">
+                            <StackPanel>
+                                <TextBlock Text="Номер №" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                <TextBox x:Name="EnrollmentNumberTb" Margin="5 0 5 5"/>
+                                <TextBlock Text="Дата" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                <DatePicker x:Name="EnrollmentDateDp" Margin="5 0 5 5"/>
+                                <TextBlock Text="Группа" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                <ComboBox Name="GroupCb" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Приказ об отчислении" Margin="5" Grid.Row="0" Grid.Column="1">
+                            <StackPanel>
+                                <TextBlock Text="Номер №" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                <TextBox x:Name="DeductionNumberTb" Margin="5 0 5 5"/>
+                                <TextBlock Text="Дата" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                <DatePicker x:Name="DeductionDateDp" Margin="5 0 5 5"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <GroupBox Header="Причина отчисления" Grid.Row="1" Grid.Column="0">
+                            <TextBox x:Name="ReasonfordeductionTb"  HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <CheckBox x:Name="CheckVacation2" Click="CheckVacation2_Click" Content="Академический отпуск" Margin="5"/>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>

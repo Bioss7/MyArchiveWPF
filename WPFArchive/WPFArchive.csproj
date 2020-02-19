@@ -77,6 +77,9 @@
     <Compile Include="AcademicLeave.cs">
       <DependentUpon>ModelArchive.tt</DependentUpon>
     </Compile>
+    <Compile Include="AcademicVacationForm.xaml.cs">
+      <DependentUpon>AcademicVacationForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Diploma.cs">
       <DependentUpon>ModelArchive.tt</DependentUpon>
     </Compile>
@@ -128,6 +131,13 @@
     <Compile Include="Window4.xaml.cs">
       <DependentUpon>Window4.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window5.xaml.cs">
+      <DependentUpon>Window5.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AcademicVacationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Window4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window5.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

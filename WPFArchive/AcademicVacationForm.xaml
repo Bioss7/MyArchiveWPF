@@ -1,0 +1,59 @@
+﻿<Window x:Class="WPFArchive.AcademicVacationForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFArchive"
+        mc:Ignorable="d"
+        Title="AcademicVacationForm" Height="500" Width="900" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="323*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <GroupBox Header="Академический отпуск" Margin="5">
+                <StackPanel>
+                    <TextBlock Text="Код студента" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <TextBox x:Name="StudentTb" Margin="5 0 5 5"/>
+                    <ComboBox x:Name="test" ItemsSource="{Binding Person}" SelectedValuePath="PersonId" Margin="5 5 5 0" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding Lastname}"/>                                    
+                                    <Run Text="{Binding Firstname}"/>
+                                    <Run Text="{Binding Middlename}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Text="Дата предоставления" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <DatePicker Name="DateAcademicLeaveDP" Margin="5 0 5 5"/>
+                    <TextBlock Text="Номер приказа" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <TextBox x:Name="OrderNumberTB" Margin="5 0 5 5"/>
+                    <TextBlock Text="Дата оканчания" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <DatePicker Name="DateExpirationDP" Margin="5 0 5 5"/>
+                    <TextBlock Text="Зачислен в группу" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <ComboBox Name="NumberGroupCB" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>
+                    <Button Click="Button_Click" Content="Добавить" Margin="5"/>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <DataGrid x:Name="GridAcademic" AutoGenerateColumns="False" Margin="5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№ " Binding="{Binding AcademicLeaveId}" />
+                    <DataGridTextColumn Header="№ Студента" Binding="{Binding IdStudent}" />
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Student.Person.Lastname}"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Student.Person.Firstname}" />
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Student.Person.Middlename}"/>
+                    <DataGridTextColumn Header="DateAcademicLeave" Binding="{Binding DateAcademicLeave}" />
+                    <DataGridTextColumn Header="OrderNumber" Binding="{Binding OrderNumber}" />
+                    <DataGridTextColumn Header="DateExpiration" Binding="{Binding DateExpiration}" />
+                    <DataGridTextColumn Header="IdNumberGroup" Binding="{Binding IdNumberGroup}" />
+                    <DataGridTextColumn Header="NumberGroup" Binding="{Binding GroupStudentNumber.NumberGroup}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>

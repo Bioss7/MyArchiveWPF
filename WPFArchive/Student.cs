@@ -26,6 +26,10 @@ namespace WPFArchive
         public Nullable<System.DateTime> DateDeduction { get; set; }
         public string Reasonfordeduction { get; set; }
         public int NumberGroup { get; set; }
+        public Nullable<int> EnrollmentNumber { get; set; }
+        public Nullable<System.DateTime> EnrollmentDate { get; set; }
+        public Nullable<int> DeductionNumber { get; set; }
+        public Nullable<System.DateTime> DeductionDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AcademicLeave> AcademicLeave { get; set; }
