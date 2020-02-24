@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFArchive"
         mc:Ignorable="d"
-        Title="AcademicVacationForm" Height="500" Width="900" Loaded="Window_Loaded">
+        Title="AcademicVacationForm" Height="600" Width="900" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="73*"/>
@@ -16,8 +16,8 @@
                 <StackPanel>
                     <TextBlock Text="Код студента" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                     <TextBox x:Name="StudentTb" Margin="5 0 5 5"/>
-                    <ComboBox x:Name="test" ItemsSource="{Binding Person}" SelectedValuePath="PersonId" Margin="5 5 5 0" >
-                        <ComboBox.ItemTemplate>
+                    <ComboBox x:Name="PersonCB" ItemsSource="{Binding Student}"  SelectedValuePath="StudentId" SelectedValue="{Binding Path=StudentId}" DisplayMemberPath="Lastname" Margin="5 5 5 0" >
+                        <!--<ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
                                     <Run Text="{Binding Lastname}"/>                                    
@@ -25,7 +25,7 @@
                                     <Run Text="{Binding Middlename}"/>
                                 </TextBlock>
                             </DataTemplate>
-                        </ComboBox.ItemTemplate>
+                        </ComboBox.ItemTemplate>-->
                     </ComboBox>
                     <TextBlock Text="Дата предоставления" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                     <DatePicker Name="DateAcademicLeaveDP" Margin="5 0 5 5"/>
@@ -36,24 +36,45 @@
                     <TextBlock Text="Зачислен в группу" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                     <ComboBox Name="NumberGroupCB" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>
                     <Button Click="Button_Click" Content="Добавить" Margin="5"/>
+                    <Button Content="Обновить" Margin="5"/>
+                    <Button Click="Button_ClickRemove" Content="Удалить" Margin="5"/>
                 </StackPanel>
             </GroupBox>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1">
-            <DataGrid x:Name="GridAcademic" AutoGenerateColumns="False" Margin="5">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="№ " Binding="{Binding AcademicLeaveId}" />
-                    <DataGridTextColumn Header="№ Студента" Binding="{Binding IdStudent}" />
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Student.Person.Lastname}"/>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Student.Person.Firstname}" />
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding Student.Person.Middlename}"/>
-                    <DataGridTextColumn Header="DateAcademicLeave" Binding="{Binding DateAcademicLeave}" />
-                    <DataGridTextColumn Header="OrderNumber" Binding="{Binding OrderNumber}" />
-                    <DataGridTextColumn Header="DateExpiration" Binding="{Binding DateExpiration}" />
-                    <DataGridTextColumn Header="IdNumberGroup" Binding="{Binding IdNumberGroup}" />
-                    <DataGridTextColumn Header="NumberGroup" Binding="{Binding GroupStudentNumber.NumberGroup}" />
-                </DataGrid.Columns>
-            </DataGrid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="316*"/>
+                <RowDefinition Height="253*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <DataGrid x:Name="GridAcademic" AutoGenerateColumns="False" Margin="5" Grid.Row="0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="№ " Binding="{Binding AcademicLeaveId}" />
+                        <DataGridTextColumn Header="№ Студента" Binding="{Binding IdStudent}" />
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Student.Person.Lastname}"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Student.Person.Firstname}" />
+                        <DataGridTextColumn Header="Отчество" Binding="{Binding Student.Person.Middlename}"/>
+                        <DataGridTextColumn Header="DateAcademicLeave" Binding="{Binding DateAcademicLeave}" />
+                        <DataGridTextColumn Header="OrderNumber" Binding="{Binding OrderNumber}" />
+                        <DataGridTextColumn Header="DateExpiration" Binding="{Binding DateExpiration}" />
+                        <DataGridTextColumn Header="IdNumberGroup" Binding="{Binding IdNumberGroup}" />
+                        <DataGridTextColumn Header="NumberGroup" Binding="{Binding GroupStudentNumber.NumberGroup}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <GroupBox Header="Студенты" Margin="5">
+                    <DataGrid x:Name="GridStudent" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код студента" Binding="{Binding StudentId}"/>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" />
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </Grid>
         </Grid>
     </Grid>
+    
 </Window>

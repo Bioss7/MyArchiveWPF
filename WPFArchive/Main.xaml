@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFArchive"
         mc:Ignorable="d"
-        Title="Main" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Архив" Height="600" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Style TargetType="TextBox" x:Key="btnmy">
@@ -57,35 +57,44 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
+            <Menu>
+                <MenuItem Header="Таблицы">
+                    <MenuItem Header="Студенты"></MenuItem>
+                    <MenuItem Header="Выпускники"></MenuItem>
+                    <MenuItem Header="Отчисленные"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </Grid>
+
         <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="174*"/>
+                <ColumnDefinition Width="250*"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <!--Отчисленные-->
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-
             <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
-                <Button Content="Внести данные" Margin="10" Click="Button_Click"/>
                 <TextBlock Text="Личные дела" HorizontalAlignment="Center"/>
                 <ComboBox  Margin="10 0 10 0"/>
                 <Button Content="Поиск" Margin="10 5 10 0" BorderThickness="0" Foreground="Gray"/>
                 <Button Content="Описи" Margin="10 5 10 0"/>
                 <Button Content="Акты" Margin="10 5 10 0"/>
+                <Button Content="Внести данные" Margin="10" Click="Button_Click"/>
             </StackPanel>
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="331*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <GroupBox Header="Добавление личного дела" Grid.Row="0" Grid.Column="1" Margin="5">
+                <GroupBox Header="Добавление личного дела" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="5">
                     <StackPanel>
-
                         <StackPanel>
                             <TextBlock Text="Фамилия:" Margin="5 0 5 0"/>
                             <TextBox x:Name="LastNameTB" Margin="5 0 5 5" Text="Иванов"/>
@@ -112,8 +121,8 @@
             <!--Выпускник-->
             <Grid x:Name="Grid1" Grid.Column="2"  Visibility="{Binding IsChecked, ElementName=check1, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.ColumnSpan="2" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200*"/>
-                    <RowDefinition Height="250*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -209,7 +218,7 @@
                 <Grid Grid.Row="0" Grid.Column="1">
                     <GroupBox Header="Причина увольнения: " Margin="0 5 5 5">
                         <Grid>
-                            <TextBox x:Name="СauseFired" HorizontalAlignment="Stretch" TextWrapping="Wrap" MinWidth="400" MinHeight="200" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                            <TextBox x:Name="СauseFired" HorizontalAlignment="Stretch" TextWrapping="Wrap" MinWidth="400" MinHeight="200" Margin="5"  ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                         </Grid>
                     </GroupBox>
                 </Grid>

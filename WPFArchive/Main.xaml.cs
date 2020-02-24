@@ -13,10 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace WPFArchive
-{
-    /// <summary>
-    /// Логика взаимодействия для Main.xaml
-    /// </summary>
+{  
     public partial class Main : Window
     {
         DbArchiveEntities db;

@@ -33,20 +33,13 @@ namespace WPFArchive
             NumberGroupCB.ItemsSource = groupStudent;
 
             GridAcademic.ItemsSource = db.AcademicLeave.ToList();
+            GridStudent.ItemsSource = db.Student.ToList();
+
+
+            var pesron = db.Person.ToList();           
+            PersonCB.ItemsSource = pesron;
 
             
-
-            var pesron = db.Person.ToList();
-           
-            test.ItemsSource = pesron;
-
-            
-
-            
-            
-
-
-
 
         }
 
@@ -54,6 +47,7 @@ namespace WPFArchive
         {
             AcademicLeave academicLeave = new AcademicLeave()
             {
+                //IdStudent = Convert.ToInt32(PersonCB.SelectedValue),
                 IdStudent = Convert.ToInt32(StudentTb.Text),
                 DateAcademicLeave = Convert.ToDateTime(DateAcademicLeaveDP.SelectedDate),
                 OrderNumber = Convert.ToInt32(OrderNumberTB.Text),
@@ -66,6 +60,13 @@ namespace WPFArchive
             GridAcademic.ItemsSource = db.AcademicLeave.ToList();
         }
 
-        
+        private void Button_ClickRemove(object sender, RoutedEventArgs e)
+        {
+            int num = (GridAcademic.SelectedItem as AcademicLeave).AcademicLeaveId;
+            var idRow = db.AcademicLeave.Where(d => d.AcademicLeaveId == num).FirstOrDefault();
+            db.AcademicLeave.Remove(idRow);
+
+            GridAcademic.ItemsSource = db.AcademicLeave.ToList();
+        }
     }
 }
