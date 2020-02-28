@@ -15,9 +15,9 @@
             <GroupBox Header="Академический отпуск" Margin="5">
                 <StackPanel>
                     <TextBlock Text="Код студента" HorizontalAlignment="Left" Margin="5 5 5 0"/>
-                    <TextBox x:Name="StudentTb" Margin="5 0 5 5"/>
-                    <ComboBox x:Name="PersonCB" ItemsSource="{Binding Student}"  SelectedValuePath="StudentId" SelectedValue="{Binding Path=StudentId}" DisplayMemberPath="Lastname" Margin="5 5 5 0" >
-                        <!--<ComboBox.ItemTemplate>
+                    <TextBox x:Name="StudentTb" Text="{Binding ElementName=GridAcademic, Path=SelectedItem.IdStudent}" Margin="5 0 5 5"/>
+                    <!--<ComboBox x:Name="PersonCB" ItemsSource="{Binding Student}"  SelectedValuePath="StudentId" SelectedValue="{Binding Path=StudentId}" DisplayMemberPath="Lastname" Margin="5 5 5 0" >
+                        <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
                                     <Run Text="{Binding Lastname}"/>                                    
@@ -25,8 +25,8 @@
                                     <Run Text="{Binding Middlename}"/>
                                 </TextBlock>
                             </DataTemplate>
-                        </ComboBox.ItemTemplate>-->
-                    </ComboBox>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>-->
                     <TextBlock Text="Дата предоставления" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                     <DatePicker Name="DateAcademicLeaveDP" Margin="5 0 5 5"/>
                     <TextBlock Text="Номер приказа" HorizontalAlignment="Left" Margin="5 5 5 0"/>
@@ -35,8 +35,8 @@
                     <DatePicker Name="DateExpirationDP" Margin="5 0 5 5"/>
                     <TextBlock Text="Зачислен в группу" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                     <ComboBox Name="NumberGroupCB" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>
-                    <Button Click="Button_Click" Content="Добавить" Margin="5"/>
-                    <Button Content="Обновить" Margin="5"/>
+                    <Button Click="Button_ClickAdd" Content="Добавить" Margin="5"/>
+                    <Button Click="Button_ClickUpdate" Content="Обновить" Margin="5"/>
                     <Button Click="Button_ClickRemove" Content="Удалить" Margin="5"/>
                 </StackPanel>
             </GroupBox>
@@ -54,11 +54,10 @@
                         <DataGridTextColumn Header="Фамилия" Binding="{Binding Student.Person.Lastname}"/>
                         <DataGridTextColumn Header="Имя" Binding="{Binding Student.Person.Firstname}" />
                         <DataGridTextColumn Header="Отчество" Binding="{Binding Student.Person.Middlename}"/>
-                        <DataGridTextColumn Header="DateAcademicLeave" Binding="{Binding DateAcademicLeave}" />
-                        <DataGridTextColumn Header="OrderNumber" Binding="{Binding OrderNumber}" />
-                        <DataGridTextColumn Header="DateExpiration" Binding="{Binding DateExpiration}" />
-                        <DataGridTextColumn Header="IdNumberGroup" Binding="{Binding IdNumberGroup}" />
-                        <DataGridTextColumn Header="NumberGroup" Binding="{Binding GroupStudentNumber.NumberGroup}" />
+                        <DataGridTextColumn Header="Дата предоставления" Binding="{Binding DateAcademicLeave}" />
+                        <DataGridTextColumn Header="№ приказа" Binding="{Binding OrderNumber}" />
+                        <DataGridTextColumn Header="Дата окончания а/о" Binding="{Binding DateExpiration}" />
+                        <DataGridTextColumn Header="Зачислен в группу" Binding="{Binding GroupStudentNumber.NumberGroup}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

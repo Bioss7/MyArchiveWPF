@@ -1,0 +1,232 @@
+﻿<Window x:Class="WPFArchive.TableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFArchive"
+        mc:Ignorable="d"
+        Title="TableWindow" Height="450" Width="870" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Выпускники">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <DataGrid x:Name="GridStudents" AutoGenerateColumns="False" GridLinesVisibility="None">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Номер студента" Width="auto" Binding="{Binding StudentId}"/>
+                                <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}" Width="auto"/>
+                                <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" Width="auto"/>
+                                <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}" Width="auto"/>
+                                <DataGridTextColumn Header="Дата рождения" Binding="{Binding Person.DateofBirth, StringFormat=\{0:dd.MM.yy\}}" Width="auto"/>
+                                <DataGridTextColumn Header="Группа" Binding="{Binding GroupStudentNumber.NumberGroup}" Width="auto"/>
+                            </DataGrid.Columns>
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <GroupBox Header="Личное дело" FontSize="14" Grid.Row="0" Grid.Column="0">
+                                            <StackPanel>
+                                                <TextBlock Text="Номер личного дела №:" />
+                                                <TextBlock Text="{Binding Person.PersonalDocument.NumberPersonalDocument}" />
+                                                <TextBlock Text="Номер описи №" />
+                                                <TextBlock Text="{Binding Person.PersonalDocument.NumberInventory}" />
+                                                <TextBlock Text="Срок хранения" />
+                                                <TextBlock Text="{Binding Person.PersonalDocument.ShelfLife}" />
+                                            </StackPanel>
+                                        </GroupBox>
+                                        <StackPanel Grid.Row="0" Grid.Column="1">
+                                            <GroupBox Header="Приказ о зачислении" >
+                                                <StackPanel>
+                                                    <TextBlock Text="Номер №" FontWeight="Bold" />
+                                                    <TextBlock Text="{Binding Diploma/EnrollmentNumber}" />
+                                                    <TextBlock Text="Дата" FontWeight="Bold" />
+                                                    <TextBlock Text="{Binding Diploma/EnrollmentDate, StringFormat=\{0:dd.MM.yy\}}" />
+                                                    <TextBlock Text="Группа" FontWeight="Bold" />
+                                                    <TextBlock Text="{Binding GroupStudentNumber.NumberGroup}" />
+                                                </StackPanel>
+                                            </GroupBox>
+                                            <GroupBox Header="Приказ об выпуске">
+                                                <StackPanel>
+                                                    <TextBlock Text="Номер №" FontWeight="Bold" />
+                                                    <TextBlock Text="{Binding Diploma/ReleaseNumber}" />
+                                                    <TextBlock Text="Дата" FontWeight="Bold" />
+                                                    <TextBlock Text="{Binding Diploma/ReleaseDate, StringFormat=\{0:dd.MM.yy\}}" />
+                                                    <TextBlock Text="Группа" FontWeight="Bold" />
+                                                    <TextBlock Text="{Binding GroupStudentNumber.NumberGroup}" />
+                                                </StackPanel>
+                                            </GroupBox>
+                                        </StackPanel>
+                                        <GroupBox Header="Диплом" Grid.Column="2" >
+                                            <StackPanel>
+                                                <TextBlock Text="Серия" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding Diploma/Series}" />
+                                                <TextBlock Text="Номер №:" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding Diploma/Number}" />
+                                                <TextBlock Text="Регистрационный номер №:" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding Diploma/RegistrationNumber}" />
+                                                <TextBlock Text="Квалификация:" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding Diploma/Qualification.NameQualification}" />
+                                                <TextBlock Text="Специальность:" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding Diploma/Specialty.SpecialtyName}" />
+                                            </StackPanel>
+                                        </GroupBox>
+                                        <GroupBox Header="Приложение" Grid.Column="3" >
+                                            <StackPanel>
+                                                <TextBlock Text="Серия:" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding Diploma/ApplicationSeries}" />
+                                                <TextBlock Text="Номер №:" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding Diploma/ApplicationNumber}" />
+                                                <TextBlock Text="Дата выдачи::" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding Diploma/ApplicationDate, StringFormat=\{0:dd.MM.yy\}}" />
+                                            </StackPanel>
+                                        </GroupBox>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <StackPanel>
+                            <Expander Header="Edit">
+                                <GroupBox Header="Студенты">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="Номер студента:" Margin="5 0 5 0"/>
+                                            <TextBox x:Name="StudentTb" Margin="5 0 5 5" Text=""/>
+                                            <TextBlock Text="Фамилия:" Margin="5 0 5 0"/>
+                                            <TextBox x:Name="LastNameTB" Margin="5 0 5 5" Text=""/>
+                                            <TextBlock Text="Имя:" Margin="5 0 5 0"/>
+                                            <TextBox x:Name="FirstTB" Margin="5 0 5 5" Text=""/>
+                                            <TextBlock Text="Отчество:" Margin="5 0 5 0"/>
+                                            <TextBox x:Name="MiddleNameTB" Margin="5 0 5 5" Text=""/>
+                                            <TextBlock Text="Дата рождения:" Margin="5 0 5 0"/>
+                                            <DatePicker x:Name="DateofBirthDP" Margin="5 0 5 5"/>
+                                            <Expander Header="Личное дело">
+                                                <StackPanel>
+                                                    <TextBox x:Name="NumberPersonalDocumentTB"  Margin="5 0 5 5" Text="1"/>
+                                                    <TextBlock Text="Номер описи №:" Margin="5 0 5 0"/>
+                                                    <TextBox x:Name="NumberInventoryTB" Margin="5 0 5 5" Text="1"/>
+                                                    <TextBlock Text="Срок хранения" Margin="5 0 5 0"/>
+                                                    <TextBox x:Name="ShelfLifeTB" Margin="5 0 5 5" Text="70"/>
+                                                </StackPanel>
+                                            </Expander>
+                                            <!--<TextBlock Text="Группа:" Margin="5 0 5 0"/>-->
+                                            <!--<ComboBox Name="GroupCB" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>-->
+                                            <Button x:Name="StudentAddBtn" Click="StudentAddBtn_Click" Content="Добавить" Margin="5"/>
+                                            <Button x:Name="StudentUpdBtn" Click="StudentUpdBtn_Click" Content="Обновить" Margin="5"/>
+                                            <Button x:Name="StudentDelBtn" Content="Удалить" Margin="5"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <GroupBox Header="Приказ о зачислении" Grid.Column="0" Grid.Row="0" Margin="5">
+                                                <StackPanel>
+                                                    <TextBlock Text="Номер №" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                    <TextBox x:Name="EnrollmentNumberTB" Margin="5 0 5 5"/>
+                                                    <TextBlock Text="Дата" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                    <DatePicker x:Name="EnrollmentDateDP" Margin="5 0 5 5"/>
+                                                    <TextBlock Text="Группа" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                    <ComboBox Name="GroupCB" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>
+
+                                                </StackPanel>
+                                            </GroupBox>
+                                            <GroupBox Header="Приказ об выпуске" Grid.Column="1" Grid.Row="0" Margin="5">
+                                                <StackPanel>
+                                                    <TextBlock Text="Номер №" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                    <TextBox x:Name="ReleaseNumberTB" Margin="5 0 5 5"/>
+                                                    <TextBlock Text="Дата" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                    <DatePicker x:Name="ReleaseDate" Margin="5 0 5 5"/>
+
+                                                </StackPanel>
+                                            </GroupBox>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="3">
+                                            <StackPanel>
+                                                <GroupBox Header="Диплом" Grid.Column="0" Grid.Row="1" Margin="5">
+                                                    <StackPanel>
+                                                        <TextBlock Text="Серия: " HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                        <TextBox x:Name="SeriesTB" Margin="5 0 5 5"/>
+                                                        <TextBlock Text="Номер №: " HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                        <TextBox x:Name="NumberTB" Margin="5 0 5 5"/>
+                                                        <TextBlock Text="Регистрационный номер №:" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                        <TextBox x:Name="RegistrationNumberTB" Margin="5 0 5 5"/>
+                                                        <TextBlock Text="Квалификация:" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                        <ComboBox x:Name="QualificationCB" ItemsSource="{Binding Qualification}" DisplayMemberPath="NameQualification" SelectedValuePath="QualificationId" SelectedValue="{Binding Path=QualificationId}" Margin="5 0 5 5"/>
+                                                        <TextBlock Text="Специальность:" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                        <ComboBox x:Name="SpecialtyCB" ItemsSource="{Binding Specialty}" DisplayMemberPath="SpecialtyName" SelectedValuePath="SpecialtyId" SelectedValue="{Binding Path=SpecialtyId}" Margin="5 0 5 5"/>
+                                                        <CheckBox x:Name="CheckVacation1" Click="CheckVacationAddTable_Click" Content="Академический отпуск" HorizontalAlignment="Left" Margin="5 0 5 5" />
+                                                        <Button x:Name="DisciplineBtnAdd" Click="DisciplineBtnAddTable_Click" Content="Добавить оценки" Margin="5"/>
+
+
+                                                    </StackPanel>
+                                                </GroupBox>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="4">
+                                            <StackPanel>
+                                                <GroupBox Header="Приложение к диплому" Margin="5">
+                                                    <StackPanel>
+                                                        <TextBlock Text="Серия: " HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                        <TextBox x:Name="ApplicationSeriesTB" Margin="5 0 5 5"/>
+                                                        <TextBlock Text="Номер №: " HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                        <TextBox x:Name="ApplicationNumberTB" Margin="5 0 5 5"/>
+                                                        <TextBlock Text="Дата выдачи: " HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                                        <DatePicker x:Name="ApplicationDate" Margin="5 0 5 5"/>
+                                                    </StackPanel>
+                                                </GroupBox>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </GroupBox>
+                            </Expander>
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Выпускники">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26*"/>
+                        <RowDefinition Height="223*"/>
+                        <RowDefinition Height="142*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Background="AntiqueWhite">
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Отчисленные" />
+            <TabItem Header="Студенты" />
+            <TabItem Header="Студенты" />
+            <TabItem Header="Студенты" />
+            <TabItem Header="Студенты" />
+            <TabItem Header="Студенты" />
+            <TabItem Header="Студенты" />
+            <TabItem Header="Студенты" />
+            <TabItem Header="Студенты" />
+
+        </TabControl>
+
+
+    </Grid>
+</Window>

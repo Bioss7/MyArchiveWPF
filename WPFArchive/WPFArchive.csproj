@@ -83,6 +83,15 @@
     <Compile Include="Diploma.cs">
       <DependentUpon>ModelArchive.tt</DependentUpon>
     </Compile>
+    <Compile Include="Discipline.cs">
+      <DependentUpon>ModelArchive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DisciplineList.cs">
+      <DependentUpon>ModelArchive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DisciplineWindow.xaml.cs">
+      <DependentUpon>DisciplineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Employee.cs">
       <DependentUpon>ModelArchive.tt</DependentUpon>
     </Compile>
@@ -122,6 +131,9 @@
     <Compile Include="Student.cs">
       <DependentUpon>ModelArchive.tt</DependentUpon>
     </Compile>
+    <Compile Include="TableWindow.xaml.cs">
+      <DependentUpon>TableWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
@@ -139,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DisciplineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,6 +177,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,6 +256,8 @@
       <DependentUpon>ModelArchive.edmx</DependentUpon>
       <LastGenOutput>ModelArchive.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\icons8-картотека-96.png" />
+    <Resource Include="Resources\icons8-картотека-64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

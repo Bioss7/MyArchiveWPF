@@ -13,10 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace WPFArchive
-{
-    /// <summary>
-    /// Логика взаимодействия для AcademicVacationForm.xaml
-    /// </summary>
+{   
     public partial class AcademicVacationForm : Window
     {
         DbArchiveEntities db;
@@ -37,13 +34,13 @@ namespace WPFArchive
 
 
             var pesron = db.Person.ToList();           
-            PersonCB.ItemsSource = pesron;
+            //PersonCB.ItemsSource = pesron;
 
             
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_ClickAdd(object sender, RoutedEventArgs e)
         {
             AcademicLeave academicLeave = new AcademicLeave()
             {
@@ -63,9 +60,26 @@ namespace WPFArchive
         private void Button_ClickRemove(object sender, RoutedEventArgs e)
         {
             int num = (GridAcademic.SelectedItem as AcademicLeave).AcademicLeaveId;
-            var idRow = db.AcademicLeave.Where(d => d.AcademicLeaveId == num).FirstOrDefault();
-            db.AcademicLeave.Remove(idRow);
+            var queryRemove = db.AcademicLeave.Where(d => d.AcademicLeaveId == num).FirstOrDefault();
+            db.AcademicLeave.Remove(queryRemove);
+            db.SaveChanges();
+            GridAcademic.ItemsSource = db.AcademicLeave.ToList();
+        }
 
+        private void Button_ClickUpdate(object sender, RoutedEventArgs e)
+        {
+            int num = (GridAcademic.SelectedItem as AcademicLeave).AcademicLeaveId;
+            var queryUpdate = db.AcademicLeave.Where(u => u.AcademicLeaveId == num).FirstOrDefault();
+
+            AcademicLeave academicLeave = new AcademicLeave();
+
+            queryUpdate.IdStudent = Convert.ToInt32(StudentTb.Text);
+            queryUpdate.DateAcademicLeave = Convert.ToDateTime(DateAcademicLeaveDP.SelectedDate);
+            queryUpdate.OrderNumber = Convert.ToInt32(OrderNumberTB.Text);
+            queryUpdate.DateExpiration = Convert.ToDateTime(DateExpirationDP.SelectedDate);
+            queryUpdate.IdNumberGroup = Convert.ToInt32(NumberGroupCB.SelectedValue);
+
+            db.SaveChanges();
             GridAcademic.ItemsSource = db.AcademicLeave.ToList();
         }
     }

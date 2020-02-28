@@ -27,6 +27,8 @@ namespace WPFArchive
     
         public virtual DbSet<AcademicLeave> AcademicLeave { get; set; }
         public virtual DbSet<Diploma> Diploma { get; set; }
+        public virtual DbSet<Discipline> Discipline { get; set; }
+        public virtual DbSet<DisciplineList> DisciplineList { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<GroupStudentNumber> GroupStudentNumber { get; set; }
         public virtual DbSet<Person> Person { get; set; }

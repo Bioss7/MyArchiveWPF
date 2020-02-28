@@ -19,13 +19,14 @@ namespace WPFArchive
         {
             this.AcademicLeave = new HashSet<AcademicLeave>();
             this.Diploma = new HashSet<Diploma>();
+            this.Discipline = new HashSet<Discipline>();
         }
     
         public int StudentId { get; set; }
         public int IdPerson { get; set; }
         public Nullable<System.DateTime> DateDeduction { get; set; }
         public string Reasonfordeduction { get; set; }
-        public int NumberGroup { get; set; }
+        public Nullable<int> NumberGroup { get; set; }
         public Nullable<int> EnrollmentNumber { get; set; }
         public Nullable<System.DateTime> EnrollmentDate { get; set; }
         public Nullable<int> DeductionNumber { get; set; }
@@ -35,6 +36,8 @@ namespace WPFArchive
         public virtual ICollection<AcademicLeave> AcademicLeave { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Diploma> Diploma { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Discipline> Discipline { get; set; }
         public virtual GroupStudentNumber GroupStudentNumber { get; set; }
         public virtual Person Person { get; set; }
     }

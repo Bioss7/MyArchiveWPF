@@ -1,0 +1,60 @@
+﻿<Window x:Class="WPFArchive.DisciplineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFArchive"
+        mc:Ignorable="d"
+        Title="DisciplineWindow" Height="450" Width="700" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="299*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <GroupBox Header="Добавление дисциплины" Margin="5">
+                <StackPanel>
+                    <TextBlock Text="Код студента" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <TextBox x:Name="StudentTb" Text="" Margin="5 0 5 5" />
+                    <TextBlock Text="Наименование дисциплины" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <ComboBox Name="DisciplineListCB" ItemsSource="{Binding DisciplineList}" DisplayMemberPath="DisciplineName"  SelectedValuePath="DisciplineListId" SelectedValue="{Binding Path=DisciplineListId}" Margin="5 0 5 5" />
+                    <TextBlock Text="Количество часов" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <TextBox x:Name="NumberOfHoursTb" Text="" Margin="5 0 5 5" />
+                    <TextBlock Text="Оценка" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <TextBox x:Name="RatingTb" Text="" Margin="5 0 5 5" />
+                    <Button Click="Button_ClickAdd" Content="Добавить" Margin="5"/>
+                    <Button Click="Button_ClickUpdate" Content="Обновить" Margin="5"/>
+                    <Button Click="Button_ClickRemove" Content="Удалить" Margin="5"/>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="195*"/>
+                <RowDefinition Height="224*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <DataGrid x:Name="GridDiscipline" AutoGenerateColumns="False" Margin="5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Код студента" Binding="{Binding IdStudent}"/>
+                        <DataGridTextColumn Header="Наименование дисцплины" Binding="{Binding DisciplineList.DisciplineName}"/>
+                        <DataGridTextColumn Header="Количество часов" Binding="{Binding NumberOfHours}"/>
+                        <DataGridTextColumn Header="Оценка" Binding="{Binding Rating}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <GroupBox Header="Студенты" Margin="5">
+                    <DataGrid x:Name="GridStudent" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код студента" Binding="{Binding StudentId}"/>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" />
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

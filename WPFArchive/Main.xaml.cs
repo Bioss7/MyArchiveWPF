@@ -23,6 +23,7 @@ namespace WPFArchive
             InitializeComponent();
             db = new DbArchiveEntities();
 
+            
            
         }
 
@@ -124,7 +125,7 @@ namespace WPFArchive
                     DeductionDate = Convert.ToDateTime(DeductionDateDp.SelectedDate),
                     Reasonfordeduction = ReasonfordeductionTb.Text,
                     NumberGroup = Convert.ToInt32(GroupCb.SelectedValue)
-            };
+                };
 
                 db.Student.Add(student);
                 db.SaveChanges();
@@ -160,6 +161,18 @@ namespace WPFArchive
         {
             AcademicVacationForm academicVacationForm = new AcademicVacationForm();
             academicVacationForm.ShowDialog();
+        }
+
+        private void DisciplineBtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            DisciplineWindow disciplineWindow = new DisciplineWindow();
+            disciplineWindow.Show();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TableWindow tableWindow = new TableWindow();
+            tableWindow.ShowDialog();
         }
     }
 }

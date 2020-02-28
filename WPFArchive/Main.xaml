@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFArchive"
         mc:Ignorable="d"
-        Title="Архив" Height="600" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Архив" Height="500" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="Resources/icons8-картотека-96.png" SizeToContent="WidthAndHeight">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Style TargetType="TextBox" x:Key="btnmy">
@@ -50,72 +50,89 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="24*"/>
-            <RowDefinition Height="219*"/>
-            <RowDefinition Height="176*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="510*"/>
+            <RowDefinition Height="26*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
-            <Menu>
-                <MenuItem Header="Таблицы">
-                    <MenuItem Header="Студенты"></MenuItem>
-                    <MenuItem Header="Выпускники"></MenuItem>
-                    <MenuItem Header="Отчисленные"></MenuItem>
+            <Menu Opacity="0.7" Background="Green">
+
+                <MenuItem Header="Таблицы" Foreground="White" Background="Green" Click="MenuItem_Click">
+                    
                 </MenuItem>
             </Menu>
         </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
+        <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="250*"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <!--Отчисленные-->
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
-                <TextBlock Text="Личные дела" HorizontalAlignment="Center"/>
-                <ComboBox  Margin="10 0 10 0"/>
-                <Button Content="Поиск" Margin="10 5 10 0" BorderThickness="0" Foreground="Gray"/>
-                <Button Content="Описи" Margin="10 5 10 0"/>
-                <Button Content="Акты" Margin="10 5 10 0"/>
-                <Button Content="Внести данные" Margin="10" Click="Button_Click"/>
-            </StackPanel>
+            <Grid Background="WhiteSmoke">
+                <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+                    <TextBlock Text="Личные дела" HorizontalAlignment="Center"/>
+                    <ComboBox  Margin="10 0 10 0"/>
+                    <Button Content="Поиск" Margin="10 5 10 0" />
+                    <Button Content="Описи" Margin="10 5 10 0"/>
+                    <Button Content="Акты" Margin="10 5 10 0"/>
+                    <Button Content="Внести данные" Margin="10" Padding="5" Click="Button_Click" Foreground="White" Background="Green" FontSize="12"/>
+                </StackPanel>
+            </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="331*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <GroupBox Header="Добавление личного дела" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="5">
-                    <StackPanel>
-                        <StackPanel>
-                            <TextBlock Text="Фамилия:" Margin="5 0 5 0"/>
-                            <TextBox x:Name="LastNameTB" Margin="5 0 5 5" Text="Иванов"/>
-                            <TextBlock Text="Имя:" Margin="5 0 5 0"/>
-                            <TextBox x:Name="FirstTB" Margin="5 0 5 5" Text="Иван"/>
-                            <CheckBox Content="Отчество" Margin="5 0 5 0"/>
-                            <TextBox  x:Name="MiddleNameTB" Margin="5 0 5 5" Text="Иванович"/>
-                            <TextBlock Text="Дата рождения:" Margin="5 0 5 0"/>
-                            <DatePicker x:Name="DateofBirthDP" Margin="5 0 5 5" Text="30.04.95"/>
-                            <TextBlock Text="Номер личного дела №:" Margin="5 0 5 0"/>
-                            <TextBox x:Name="NumberPersonalDocumentTB"  Margin="5 0 5 5" Text="1"/>
-                            <TextBlock Text="Номер описи №:" Margin="5 0 5 0"/>
-                            <TextBox x:Name="NumberInventoryTB" Margin="5 0 5 5" Text="1"/>
-                            <TextBlock Text="Срок хранения" Margin="5 0 5 0"/>
-                            <TextBox x:Name="ShelfLifeTB" Margin="5 0 5 5" Text="70"/>
-                            <CheckBox x:Name="check1" IsChecked="False" Content="Выпускник" Margin="5 0 5 5" />
-                            <CheckBox x:Name="check2" IsChecked="False" Content="Отчислен" Margin="5 0 5 5"/>
-                            <CheckBox x:Name="check3" IsChecked="False" Content="Уволен" Margin="5 0 5 5"/>
-                        </StackPanel>
-                    </StackPanel>
-                </GroupBox>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="371*"/>
+                        <RowDefinition Height="31*"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="298*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Добавление личного дела" HorizontalAlignment="Stretch" Grid.Row="0" Margin="5" BorderThickness="0">
+                            <StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="Фамилия:" Margin="5 0 5 0"/>
+                                    <TextBox x:Name="LastNameTB" Margin="5 0 5 5" Text="Иванов"/>
+                                    <TextBlock Text="Имя:" Margin="5 0 5 0"/>
+                                    <TextBox x:Name="FirstTB" Margin="5 0 5 5" Text="Иван"/>
+                                    <CheckBox Content="Отчество" Margin="5 0 5 0"/>
+                                    <TextBox  x:Name="MiddleNameTB" Margin="5 0 5 5" Text="Иванович"/>
+                                    <TextBlock Text="Дата рождения:" Margin="5 0 5 0"/>
+                                    <DatePicker x:Name="DateofBirthDP" Margin="5 0 5 5" Text="30.04.95"/>
+                                    <TextBlock Text="Номер личного дела №:" Margin="5 0 5 0"/>
+                                    <TextBox x:Name="NumberPersonalDocumentTB"  Margin="5 0 5 5" Text="1"/>
+                                    <TextBlock Text="Номер описи №:" Margin="5 0 5 0"/>
+                                    <TextBox x:Name="NumberInventoryTB" Margin="5 0 5 5" Text="1"/>
+                                    <TextBlock Text="Срок хранения" Margin="5 0 5 0"/>
+                                    <TextBox x:Name="ShelfLifeTB" Margin="5 0 5 5" Text="70"/>
+                                    <CheckBox x:Name="check1" IsChecked="False" Content="Выпускник" Margin="5 0 5 5" />
+                                    <CheckBox x:Name="check2" IsChecked="False" Content="Отчислен" Margin="5 0 5 5"/>
+                                    <CheckBox x:Name="check3" IsChecked="False" Content="Уволен" Margin="5 0 5 5"/>
+
+                                    <!--<Separator Background="Green" />-->
+                                </StackPanel>
+                                <!--<Button Content="Внести данные" Margin="10" Padding="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>-->
+                            </StackPanel>
+                        </GroupBox>
+                        
+                    </Grid>
+                </Grid>
 
             </Grid>
             <!--Выпускник-->
@@ -162,6 +179,7 @@
                         <TextBlock Text="Специальность:" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                         <ComboBox x:Name="SpecialtyCB" ItemsSource="{Binding Specialty}" DisplayMemberPath="SpecialtyName" SelectedValuePath="SpecialtyId" SelectedValue="{Binding Path=SpecialtyId}" Margin="5 0 5 5"/>
                         <CheckBox x:Name="CheckVacation1" Click="CheckVacation1_Click" Content="Академический отпуск" HorizontalAlignment="Left" Margin="5 0 5 5" />
+                        <Button x:Name="DisciplineBtnAdd" Click="DisciplineBtnAdd_Click" Content="Добавить оценки" Margin="5"/>
 
 
                     </StackPanel>
@@ -216,9 +234,9 @@
                     </GroupBox>
                 </StackPanel>
                 <Grid Grid.Row="0" Grid.Column="1">
-                    <GroupBox Header="Причина увольнения: " Margin="0 5 5 5">
+                    <GroupBox Header="Причина увольнения: " Margin="0 5 5 5" BorderThickness="0">
                         <Grid>
-                            <TextBox x:Name="СauseFired" HorizontalAlignment="Stretch" TextWrapping="Wrap" MinWidth="400" MinHeight="200" Margin="5"  ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                            <TextBox x:Name="СauseFired" HorizontalAlignment="Stretch" TextWrapping="Wrap" MinWidth="400" MinHeight="200" Margin="5"  ScrollViewer.VerticalScrollBarVisibility="Auto" />
                         </Grid>
                     </GroupBox>
                 </Grid>
