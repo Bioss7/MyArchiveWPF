@@ -50,19 +50,18 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="33*"/>
-            <RowDefinition Height="510*"/>
-            <RowDefinition Height="26*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="429*"/>
+            <RowDefinition Height="22*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
-            <Menu Opacity="0.7" Background="Green">
+        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Height="18">
+            <Menu Opacity="1" Background="#8ac858">
+                <MenuItem Header="Таблицы" Click="MenuItem_Click" Background="#8ac858" Foreground="White" FontSize="12" FontWeight="Bold">
 
-                <MenuItem Header="Таблицы" Foreground="White" Background="Green" Click="MenuItem_Click">
-                    
                 </MenuItem>
             </Menu>
         </Grid>
@@ -79,14 +78,13 @@
                 <!--Отчисленные-->
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Grid Background="WhiteSmoke">
+            <Grid Background="White">
                 <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
-                    <TextBlock Text="Личные дела" HorizontalAlignment="Center"/>
-                    <ComboBox  Margin="10 0 10 0"/>
-                    <Button Content="Поиск" Margin="10 5 10 0" />
+                    <TextBlock Text="Личные дела" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="Gray" />
+                    <Button Click="SearchBtn" Content=" Поиск" Margin="10 5 10 0" Padding="5" Foreground="White" Background="#8ac858" FontSize="12" FontWeight="Bold" BorderBrush="#8ac858" FontFamily="Segoe UI Symbol"/>
                     <Button Content="Описи" Margin="10 5 10 0"/>
                     <Button Content="Акты" Margin="10 5 10 0"/>
-                    <Button Content="Внести данные" Margin="10" Padding="5" Click="Button_Click" Foreground="White" Background="Green" FontSize="12"/>
+                    <!--<Button Content="Внести данные" Margin="10" Padding="5" Click="Button_Click" Foreground="White" Background="Green" FontSize="12"/>-->
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
@@ -96,15 +94,15 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Grid.Column="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="371*"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="31*"/>
                     </Grid.RowDefinitions>
-                    <Grid>
+                    <Grid Background="WhiteSmoke">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="298*"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        <GroupBox Header="Добавление личного дела" HorizontalAlignment="Stretch" Grid.Row="0" Margin="5" BorderThickness="0">
+                        <GroupBox Header="Добавление личного дела" HorizontalAlignment="Stretch" Grid.Row="0" Margin="5" BorderThickness="0" Background="WhiteSmoke">
                             <StackPanel>
                                 <StackPanel>
                                     <TextBlock Text="Фамилия:" Margin="5 0 5 0"/>
@@ -124,14 +122,16 @@
                                     <CheckBox x:Name="check1" IsChecked="False" Content="Выпускник" Margin="5 0 5 5" />
                                     <CheckBox x:Name="check2" IsChecked="False" Content="Отчислен" Margin="5 0 5 5"/>
                                     <CheckBox x:Name="check3" IsChecked="False" Content="Уволен" Margin="5 0 5 5"/>
-
-                                    <!--<Separator Background="Green" />-->
+                                    <Separator Background="Green" />
                                 </StackPanel>
                                 <!--<Button Content="Внести данные" Margin="10" Padding="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>-->
                             </StackPanel>
                         </GroupBox>
-                        
+
                     </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Button Content="Внести данные" Margin="10" Padding="5" Click="Button_ClickAddData" Foreground="White" Background="#8ac858" FontSize="12" FontWeight="Bold" BorderBrush="#8ac858"/>
                 </Grid>
 
             </Grid>

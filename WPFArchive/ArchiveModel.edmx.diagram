@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1aae71768acf4c2f98b34602a91273b6" Name="Diagram1">
+      <Diagram DiagramId="2b8074032d8d452d8d7f6f65dc34a8a3" Name="Diagram1">
         <EntityTypeShape EntityType="DbArchiveModel.AcademicLeave" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DbArchiveModel.Diploma" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DbArchiveModel.Discipline" Width="1.5" PointX="11.25" PointY="5" IsExpanded="true" />
@@ -16,6 +16,7 @@
         <EntityTypeShape EntityType="DbArchiveModel.Qualification" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DbArchiveModel.Specialty" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DbArchiveModel.Student" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
         <AssociationConnector Association="DbArchiveModel.FK_AcademicLeave_GroupStudentNumber" ManuallyRouted="false" />
         <AssociationConnector Association="DbArchiveModel.FK_AcademicLeave_Student" ManuallyRouted="false" />
         <AssociationConnector Association="DbArchiveModel.FK_Diploma_AcademicLeave" ManuallyRouted="false" />

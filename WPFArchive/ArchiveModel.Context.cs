@@ -36,5 +36,6 @@ namespace WPFArchive
         public virtual DbSet<Qualification> Qualification { get; set; }
         public virtual DbSet<Specialty> Specialty { get; set; }
         public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }
