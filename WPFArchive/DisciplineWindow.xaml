@@ -22,9 +22,9 @@
                     <TextBox x:Name="NumberOfHoursTb" Text="" Margin="5 0 5 5" />
                     <TextBlock Text="Оценка" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                     <TextBox x:Name="RatingTb" Text="" Margin="5 0 5 5" />
-                    <Button Click="Button_ClickAdd" Content="Добавить" Margin="5"/>
-                    <Button Click="Button_ClickUpdate" Content="Обновить" Margin="5"/>
-                    <Button Click="Button_ClickRemove" Content="Удалить" Margin="5"/>
+                    <Button Click="Button_ClickAdd" Content="Добавить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                    <Button Click="Button_ClickUpdate" Content="Обновить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                    <Button Click="Button_ClickRemove" Content="Удалить" Margin="5" Style="{StaticResource GreenBtn}"/>
                 </StackPanel>
             </GroupBox>
         </Grid>

@@ -144,15 +144,11 @@
                                                     <TextBox x:Name="ShelfLifeTB" Margin="5 0 5 5" />
                                                 </StackPanel>
                                             </GroupBox>
-                                            <StackPanel>
-                                                <TextBox x:Name="searhtx" />
-                                                <Button Content="SEARCH" Click="TEST"/>
-                                            </StackPanel>
                                             <!--<TextBlock Text="Группа:" Margin="5 0 5 0"/>-->
                                             <!--<ComboBox Name="GroupCB" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>-->
-                                            <Button x:Name="StudentAddBtn" Click="StudentAddBtn_Click" Content="Добавить" Margin="5"/>
-                                            <Button x:Name="StudentUpdBtn" Click="StudentUpdBtn_Click" Content="Обновить" Margin="5"/>
-                                            <Button x:Name="StudentDelBtn" Click="StudentDelBtn_Click" Content="Удалить" Margin="5"/>
+                                            <Button x:Name="StudentAddBtn" Click="StudentAddBtn_Click" Content="Добавить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                                            <Button x:Name="StudentUpdBtn" Click="StudentUpdBtn_Click" Content="Обновить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                                            <Button x:Name="StudentDelBtn" Click="StudentDelBtn_Click" Content="Удалить" Margin="5" Style="{StaticResource GreenBtn}"/>
                                         </StackPanel>
                                         <StackPanel Grid.Column="1">
                                             <GroupBox Header="Приказ о зачислении" Grid.Column="0" Grid.Row="0" Margin="5">
@@ -191,7 +187,7 @@
                                                         <TextBlock Text="Специальность:" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                                                         <ComboBox x:Name="SpecialtyCB" ItemsSource="{Binding Specialty}" DisplayMemberPath="SpecialtyName" SelectedValuePath="SpecialtyId" SelectedValue="{Binding Path=SpecialtyId}" Margin="5 0 5 5"/>
                                                         <CheckBox x:Name="CheckVacation1" Click="CheckVacationAddTable_Click" Content="Академический отпуск" HorizontalAlignment="Left" Margin="5 0 5 5" />
-                                                        <Button x:Name="DisciplineBtnAdd" Click="DisciplineBtnAddTable_Click" Content="Добавить оценки" Margin="5"/>
+                                                        <Button x:Name="DisciplineBtnAdd" Click="DisciplineBtnAddTable_Click" Content="Добавить оценки" Margin="5" Style="{StaticResource GreenBtn}"/>
 
 
                                                     </StackPanel>
@@ -218,8 +214,8 @@
                             <Expander Header="" FontFamily="Segoe UI Symbol" FontSize="17">
                                 <StackPanel Orientation="Horizontal" Margin="5">
                                     <TextBlock Text="" Margin="5" Width="15" FontFamily="Segoe UI Symbol" FontSize="15"/>
-                                    <TextBox x:Name="SearchTb" MinWidth="100"/>
-                                    <Button x:Name="Search" Click="Search_Click" Content="Найти" Padding="10 0 10 0"/>
+                                    <TextBox x:Name="SearchTb" MinWidth="100" Style="{StaticResource ShowBtn}" Tag="Найти"/>
+                                    <Button x:Name="Search" Click="Search_Click" Content="Найти" Padding="10 0 10 0" Style="{StaticResource GreenBtn}"/>
                                 </StackPanel>
                             </Expander>
                         </StackPanel>
@@ -266,9 +262,9 @@
                                             </StackPanel>
                                         </GroupBox>
                                         <StackPanel Margin="5">
-                                            <Button x:Name="StudentAddBtnExpelled" Click="StudentAddBtnExpelled_Click"  Content="Добавить" />
-                                            <Button x:Name="StudentAddUpdExpelled" Click="StudentAddUpdExpelled_Click" Content="Обновить" />
-                                            <Button x:Name="StudentAddDelExpelled" Click="StudentAddDelExpelled_Click" Content="Удалить" />
+                                            <Button x:Name="StudentAddBtnExpelled" Click="StudentAddBtnExpelled_Click"  Content="Добавить" Style="{StaticResource GreenBtn}"/>
+                                            <Button x:Name="StudentAddUpdExpelled" Click="StudentAddUpdExpelled_Click" Content="Обновить" Style="{StaticResource GreenBtn}"/>
+                                            <Button x:Name="StudentAddDelExpelled" Click="StudentAddDelExpelled_Click" Content="Удалить" Style="{StaticResource GreenBtn}"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <StackPanel Grid.Column="1">
@@ -313,7 +309,7 @@
                             <StackPanel Orientation="Horizontal" Margin="5">
                                 <TextBlock Text="" Margin="5" Width="15" FontFamily="Segoe UI Symbol" FontSize="15"/>
                                 <TextBox x:Name="SearchTbe" MinWidth="100"/>
-                                <Button x:Name="SearcheExpelledStudent" Click="SearcheExpelledStudent_Click" Content="Найти" Padding="10 0 10 0"/>
+                                <Button x:Name="SearcheExpelledStudent" Click="SearcheExpelledStudent_Click" Content="Найти" Padding="10 0 10 0" Style="{StaticResource GreenBtn}"/>
                             </StackPanel>
                         </Expander>
                     </StackPanel>
@@ -425,9 +421,9 @@
                                             </StackPanel>
                                         </GroupBox>
                                         <StackPanel Margin="5">
-                                            <Button x:Name="EmployeeAddBtn" Click="EmployeeAddBtn_Click" Content="Добавить" />
-                                            <Button x:Name="EmployeeUpdBtn" Click="EmployeeUpdBtn_Click" Content="Обновить" />
-                                            <Button x:Name="EmployeeDelBtn" Click="EmployeeDelBtn_Click" Content="Удалить" />
+                                            <Button x:Name="EmployeeAddBtn" Click="EmployeeAddBtn_Click" Content="Добавить" Style="{StaticResource GreenBtn}"/>
+                                            <Button x:Name="EmployeeUpdBtn" Click="EmployeeUpdBtn_Click" Content="Обновить" Style="{StaticResource GreenBtn}"/>
+                                            <Button x:Name="EmployeeDelBtn" Click="EmployeeDelBtn_Click" Content="Удалить" Style="{StaticResource GreenBtn}"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <StackPanel Grid.Column="1">
@@ -474,7 +470,7 @@
                             <StackPanel Orientation="Horizontal" Margin="5">
                                 <TextBlock Text="" Margin="5" Width="15" FontFamily="Segoe UI Symbol" FontSize="15"/>
                                 <TextBox x:Name="SearchTbeFired" MinWidth="100"/>
-                                <Button x:Name="SearcheStudentFired" Click="SearcheStudentFired_Click" Content="Найти" Padding="10 0 10 0"/>
+                                <Button x:Name="SearcheStudentFired" Click="SearcheStudentFired_Click" Content="Найти" Padding="10 0 10 0" Style="{StaticResource GreenBtn}"/>
                             </StackPanel>
                         </Expander>
                     </StackPanel>

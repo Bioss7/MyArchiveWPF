@@ -336,7 +336,7 @@ namespace WPFArchive
                 employee.DateReception = Convert.ToDateTime(DateReceptionDP.SelectedDate);
                 employee.Position = PositionTB.Text;
                 employee.NumberFired = Convert.ToInt32(NumberFiredTB.Text);
-                employee.DateFired = DateFiredDP.SelectedDate;
+                employee.DateFired =  Convert.ToDateTime(DateFiredDP.SelectedDate);
                 employee.СauseFired = СauseFired.Text;
             }
 
@@ -387,7 +387,7 @@ namespace WPFArchive
                 queryUpdate.DateReception = Convert.ToDateTime(DateReceptionDP.SelectedDate);
                 queryUpdate.Position = PositionTB.Text;
                 queryUpdate.NumberFired = Convert.ToInt32(NumberFiredTB.Text);
-                queryUpdate.DateFired = DateFiredDP.SelectedDate;
+                queryUpdate.DateFired = Convert.ToDateTime(DateFiredDP.SelectedDate);
                 queryUpdate.СauseFired = СauseFired.Text;
             }
 
@@ -405,19 +405,13 @@ namespace WPFArchive
 
         }
 
-        private void TEST(object sender, RoutedEventArgs e)
-        {
-            string searh = searhtx.Text;
-            var query = db.Student.ToList().Where(x => x.Person.Firstname.Contains(searh) || x.Person.Lastname.Contains(searh) || x.Person.Middlename.Contains(searh)).ToList();
-
-            GridStudents.ItemsSource = query.ToList();
-        }
+        
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
            
             //var query = db.Student.ToList().Where(x => x.Person.Firstname.StartsWith(SearchTb.Text) || x.Person.Lastname.StartsWith(SearchTb.Text) || x.Person.Middlename.StartsWith(SearchTb.Text)).ToList();
-            var querySearch = db.Student.ToList().Where(x => (x.Person.Firstname + " " + x.Person.Lastname + " " + x.Person.Middlename + " " + x.GroupStudentNumber.NumberGroup).ToLower()
+            var querySearch = db.Student.ToList().Where(x => (x.Person.Firstname + " " + x.Person.Lastname + " " + x.Person.Middlename + " " + x.GroupStudentNumber.NumberGroup + " " + x.StudentId).ToLower()
             .Contains(SearchTb.Text.ToLower()))
             .ToList();
 
@@ -426,7 +420,7 @@ namespace WPFArchive
 
         private void SearcheExpelledStudent_Click(object sender, RoutedEventArgs e)
         {          
-            var querySearch = db.Student.ToList().Where(x => (x.Person.Firstname + " " + x.Person.Lastname + " " + x.Person.Middlename + " " + x.GroupStudentNumber.NumberGroup).ToLower()
+            var querySearch = db.Student.ToList().Where(x => (x.Person.Firstname + " " + x.Person.Lastname + " " + x.Person.Middlename + " " + x.GroupStudentNumber.NumberGroup + " " + x.StudentId).ToLower()
            .Contains(SearchTbe.Text.ToLower()))
            .ToList();
 
@@ -436,7 +430,11 @@ namespace WPFArchive
       
         private void SearcheStudentFired_Click(object sender, RoutedEventArgs e)
         {
-
+            var querySearch = db.Employee.ToList().Where(x => (x.Person.Firstname + " " + x.Person.Lastname + " " + x.Person.Middlename + " " + x.Position).ToLower()
+          .Contains(SearchTbeFired.Text.ToLower()))
+          .ToList();
+          
+            GridFired.ItemsSource = querySearch.ToList();
         }
     }
 }

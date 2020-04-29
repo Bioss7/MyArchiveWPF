@@ -58,8 +58,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Height="18">
-            <Menu Opacity="1" Background="#8ac858">
+        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Height="18" Background="AliceBlue">
+            <Menu Opacity="1" Background="#8ac858" Visibility="Hidden">
                 <MenuItem Header="Таблицы" Click="MenuItem_Click" Background="#8ac858" Foreground="White" FontSize="12" FontWeight="Bold">
 
                 </MenuItem>
@@ -81,9 +81,10 @@
             <Grid Background="White">
                 <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
                     <TextBlock Text="Личные дела" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="Gray" />
-                    <Button Click="SearchBtn" Content=" Поиск" Margin="10 5 10 0" Padding="5" Foreground="White" Background="#8ac858" FontSize="12" FontWeight="Bold" BorderBrush="#8ac858" FontFamily="Segoe UI Symbol"/>
-                    <Button Content="Описи" Margin="10 5 10 0"/>
-                    <Button Content="Акты" Margin="10 5 10 0"/>
+                    <Button Click="SearchBtn" Content=" Поиск" Margin="10 5 10 0" Padding="5" Style="{StaticResource GreenBtn}"/>
+                    <Button Content="Описи" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
+                    <Button Click="ReportsBtn" Content="Справки" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
+                    <Button Click="ActsBtn" Content="Акты" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
                     <!--<Button Content="Внести данные" Margin="10" Padding="5" Click="Button_Click" Foreground="White" Background="Green" FontSize="12"/>-->
                 </StackPanel>
             </Grid>
@@ -131,12 +132,12 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Content="Внести данные" Margin="10" Padding="5" Click="Button_ClickAddData" Foreground="White" Background="#8ac858" FontSize="12" FontWeight="Bold" BorderBrush="#8ac858"/>
+                    <Button Content="Внести данные" Margin="10" Padding="5" Click="Button_ClickAddData" Style="{StaticResource GreenBtn}"/>
                 </Grid>
 
             </Grid>
             <!--Выпускник-->
-            <Grid x:Name="Grid1" Grid.Column="2"  Visibility="{Binding IsChecked, ElementName=check1, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.ColumnSpan="2" >
+            <Grid x:Name="Grid1" Grid.Column="2"  Visibility="{Binding IsChecked, ElementName=check1, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.ColumnSpan="2" Background="WhiteSmoke">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -198,16 +199,24 @@
                 </StackPanel>
             </Grid>
             <!--Уволенные-->
-            <Grid x:Name="Grid2" Grid.Column="2" Visibility="{Binding IsChecked, ElementName=check3, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.ColumnSpan="2">
+            <Grid x:Name="Grid2" Grid.Column="2" Visibility="{Binding IsChecked, ElementName=check3, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.ColumnSpan="2" Background="WhiteSmoke">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="200*"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Grid.Column="0" Margin="5 5 0 5">
-                    <GroupBox Header="Приказ о приеме" Margin="5">
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Приказ о приеме" Margin="5" Grid.Row="0" Grid.Column="0">
                         <StackPanel>
                             <TextBlock Text="Номер №:" Margin="5 5 5 0"/>
                             <TextBox x:Name="NumberReceptionTB" Margin="5 0 5 5"/>
@@ -217,7 +226,7 @@
                             <TextBox x:Name="PositionTB" Margin="5 0 5 5"/>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Приказ об увольнение" Margin="5">
+                    <GroupBox Header="Приказ об увольнение" Margin="5" Grid.Row="0" Grid.Column="1">
                         <StackPanel>
                             <TextBlock Text="Номер №:" Margin="5 5 5 0"/>
                             <TextBox x:Name="NumberFiredTB" Margin="5 0 5 5"/>
@@ -226,33 +235,25 @@
 
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Margin="5">
-                        <StackPanel>
-                            <Button Content="Отмена" Margin="5 5 5 0"/>
-                            <Button Content="Внести данные" Margin="5 5 5 0"/>
-                        </StackPanel>
-                    </GroupBox>
-                </StackPanel>
-                <Grid Grid.Row="0" Grid.Column="1">
-                    <GroupBox Header="Причина увольнения: " Margin="0 5 5 5" BorderThickness="0">
-                        <Grid>
-                            <TextBox x:Name="СauseFired" HorizontalAlignment="Stretch" TextWrapping="Wrap" MinWidth="400" MinHeight="200" Margin="5"  ScrollViewer.VerticalScrollBarVisibility="Auto" />
-                        </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <GroupBox Header="Причина увольнения: " Grid.Row="1" Grid.Column="0">
+                        <TextBox x:Name="СauseFired" HorizontalAlignment="Stretch" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" />
                     </GroupBox>
                 </Grid>
             </Grid>
             <!--Отчисленные-->
-            <Grid x:Name="Grid3" Grid.Column="3" Visibility="{Binding IsChecked, ElementName=check2, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid x:Name="Grid3" Grid.Column="3" Visibility="{Binding IsChecked, ElementName=check2, Converter={StaticResource BooleanToVisibilityConverter}}" Background="WhiteSmoke">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="120*"/>
-                        <RowDefinition Height="199*"/>
-                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="200*"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200*"/>
-                            <ColumnDefinition Width="200*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <GroupBox Header="Приказ о зачислении" Margin="5" Grid.Row="0" Grid.Column="0">
                             <StackPanel>

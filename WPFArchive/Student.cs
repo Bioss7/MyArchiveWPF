@@ -24,7 +24,6 @@ namespace WPFArchive
     
         public int StudentId { get; set; }
         public int IdPerson { get; set; }
-        public Nullable<System.DateTime> DateDeduction { get; set; }
         public string Reasonfordeduction { get; set; }
         public Nullable<int> NumberGroup { get; set; }
         public Nullable<int> EnrollmentNumber { get; set; }

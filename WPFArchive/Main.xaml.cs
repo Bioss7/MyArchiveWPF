@@ -34,7 +34,7 @@ namespace WPFArchive
             SpecialtyCB.ItemsSource = db.Specialty.ToList();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) // DELETE
         {
             //Person person = new Person();
             //PersonalDocument personalDocument = new PersonalDocument();
@@ -205,7 +205,7 @@ namespace WPFArchive
                     diploma.Series = Convert.ToInt32(SeriesTB.Text);
                     diploma.Number = Convert.ToInt32(NumberTB.Text);
                     diploma.RegistrationNumber = Convert.ToInt32(RegistrationNumberTB.Text);
-                    diploma.IdQualification = Convert.ToInt32(GroupCB.SelectedValue);
+                    diploma.IdQualification = Convert.ToInt32(QualificationCB.SelectedValue);
                     diploma.IdSpecialty = Convert.ToInt32(SpecialtyCB.SelectedValue);
                     diploma.ApplicationSeries = Convert.ToInt32(ApplicationSeriesTB.Text);
                     diploma.ApplicationNumber = Convert.ToInt32(ApplicationNumberTB.Text);
@@ -288,5 +288,19 @@ namespace WPFArchive
             TableWindow tableWindow = new TableWindow();
             tableWindow.ShowDialog();
         }
+
+        private void ReportsBtn(object sender, RoutedEventArgs e)
+        {
+            ReportsWindow reportsWindow = new ReportsWindow();
+            reportsWindow.Show();
+        }
+
+        private void ActsBtn(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
+
+       
     }
 }
