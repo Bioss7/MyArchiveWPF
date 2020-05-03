@@ -6,10 +6,17 @@
         xmlns:local="clr-namespace:WPFArchive"
         xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="WPFArchive.ReportsWindow"
         mc:Ignorable="d"
-        Title="ReportsWindow" Height="600" Width="900" Loaded="Window_Loaded">
+        Title="Справки" Height="650" Width="900" Loaded="Window_Loaded" Icon="Resources/icons8-картотека-96.png" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
     <Grid>
-        <StackPanel>
-            <Expander Header="Архивная справка для студента выпускника">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="601*"/>
+            <RowDefinition Height="601*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#8ac858" MinHeight="50" MinWidth="50">
+        </Grid>
+        <StackPanel Grid.Row="1">
+            <Expander Header="Архивная справка для студента выпускника" Grid.Row="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -19,6 +26,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="49*"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <GroupBox Header="Данные для отчета студента">
                             <Grid>
@@ -183,9 +191,74 @@
                     </Grid>
                 </Grid>
             </Expander>
-            <Expander Header="Справка">
+            <Expander Header="Справка о оценках">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <GroupBox Header="Добавление дисциплины" Margin="5">
+                            <StackPanel>
+                                <TextBlock Text="Код студента" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                                <TextBox x:Name="StudentTbb" Text="{Binding ElementName=GridStudent, Path=SelectedItem.StudentId}" Margin="5 0 5 5" />
+                                <TextBlock Text="Дата формирования справки" Margin="5 0 5 0"/>
+                                <DatePicker x:Name="DateHelpDP1" Margin="5 0 5 0"/>
+                                <TextBlock Text="Фамилия:" Margin="5 0 5 0"/>
+                                <TextBox x:Name="LastNameTB1" Text="{Binding ElementName=GridStudent, Path=SelectedItem.Person.Lastname}" Margin="5 0 5 5" />
+                                <TextBlock Text="Имя:" Margin="5 0 5 0"/>
+                                <TextBox x:Name="FirstTB1" Text="{Binding ElementName=GridStudent, Path=SelectedItem.Person.Firstname}" Margin="5 0 5 5" />
+                                <TextBlock Text="Отчество:" Margin="5 0 5 0"/>
+                                <TextBox x:Name="MiddleNameTB1" Text="{Binding ElementName=GridStudent, Path=SelectedItem.Person.Middlename}" Margin="5 0 5 5" />
+                                <TextBlock Text="Дата рождения:" Margin="5 0 5 0"/>
+                                <DatePicker x:Name="DateofBirthDP1" SelectedDate="{Binding ElementName=GridStudent, Path=SelectedItem.Person.DateofBirth}" Margin="5 0 5 5"/>
+                                <TextBlock Text="По специальности" Margin="5 0 5 0"/>
+                                <TextBox x:Name="SpecialtyTB1" Text="{Binding ElementName=GridStudent, Path=SelectedItem.Diploma/Specialty.SpecialtyName}" Margin="5 0 5 5"/>
 
+
+
+
+
+
+                                <Button x:Name="ToForm1" Click="ToForm1_Click" Content="Сформировать" Margin="5" Style="{StaticResource GreenBtn}"/>
+
+
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="195*"/>
+                            <RowDefinition Height="224*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <DataGrid x:Name="GridDiscipline" AutoGenerateColumns="False" Margin="5">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Код студента" Binding="{Binding IdStudent}" Width="auto"/>
+                                    <DataGridTextColumn Header="Дисцплина" Binding="{Binding DisciplineList.DisciplineName}" Width="auto"/>
+                                    <DataGridTextColumn Header="Количество часов" Binding="{Binding NumberOfHours}" Width="auto"/>
+                                    <DataGridTextColumn Header="Итоговая оценка" Binding="{Binding Rating}" Width="auto"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <GroupBox Header="Студенты" Margin="5">
+                                <DataGrid x:Name="GridStudent" AutoGenerateColumns="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Код студента" Binding="{Binding StudentId}"/>
+                                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}"/>
+                                        <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" />
+                                        <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </GroupBox>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Expander>
         </StackPanel>
+        <Grid Grid.Row="3" Background="#8ac858" MinHeight="50" MinWidth="50">
+        </Grid>
     </Grid>
 </Window>

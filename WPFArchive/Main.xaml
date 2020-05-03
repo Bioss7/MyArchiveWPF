@@ -58,10 +58,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Height="18" Background="AliceBlue">
+        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Height="18" Background="#8ac858">
             <Menu Opacity="1" Background="#8ac858" Visibility="Hidden">
                 <MenuItem Header="Таблицы" Click="MenuItem_Click" Background="#8ac858" Foreground="White" FontSize="12" FontWeight="Bold">
-
                 </MenuItem>
             </Menu>
         </Grid>
@@ -82,9 +81,10 @@
                 <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
                     <TextBlock Text="Личные дела" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="Gray" />
                     <Button Click="SearchBtn" Content=" Поиск" Margin="10 5 10 0" Padding="5" Style="{StaticResource GreenBtn}"/>
-                    <Button Content="Описи" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
+                    <Button Content="Описи" Margin="10 5 10 0" Style="{StaticResource GreenBtn}" Visibility="Visible"/>
                     <Button Click="ReportsBtn" Content="Справки" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
                     <Button Click="ActsBtn" Content="Акты" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
+                    <Button Content="Внести данные" Margin="10" Padding="5" Click="Button_ClickAddData" Style="{StaticResource GreenBtn}"/>
                     <!--<Button Content="Внести данные" Margin="10" Padding="5" Click="Button_Click" Foreground="White" Background="Green" FontSize="12"/>-->
                 </StackPanel>
             </Grid>
@@ -132,7 +132,7 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Content="Внести данные" Margin="10" Padding="5" Click="Button_ClickAddData" Style="{StaticResource GreenBtn}"/>
+                    <Button Content="Внести данные" Margin="10" Padding="5" Click="Button_ClickAddData" Style="{StaticResource GreenBtn}" Visibility="Collapsed"/>
                 </Grid>
 
             </Grid>
@@ -180,7 +180,7 @@
                         <TextBlock Text="Специальность:" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                         <ComboBox x:Name="SpecialtyCB" ItemsSource="{Binding Specialty}" DisplayMemberPath="SpecialtyName" SelectedValuePath="SpecialtyId" SelectedValue="{Binding Path=SpecialtyId}" Margin="5 0 5 5"/>
                         <CheckBox x:Name="CheckVacation1" Click="CheckVacation1_Click" Content="Академический отпуск" HorizontalAlignment="Left" Margin="5 0 5 5" />
-                        <Button x:Name="DisciplineBtnAdd" Click="DisciplineBtnAdd_Click" Content="Добавить оценки" Margin="5"/>
+                        <Button x:Name="DisciplineBtnAdd" Click="DisciplineBtnAdd_Click" Content="Добавить оценки" Style="{StaticResource GreenBtn}" Margin="5" />
 
 
                     </StackPanel>
@@ -284,6 +284,7 @@
                     </Grid>
                 </Grid>
             </Grid>
+           
         </Grid>
 
 

@@ -14,17 +14,15 @@ using System.Windows.Shapes;
 
 namespace WPFArchive
 {
-    /// <summary>
-    /// Логика взаимодействия для DisciplineWindow.xaml
-    /// </summary>
+    
     public partial class DisciplineWindow : Window
     {
-        DbArchiveEntities db;
+        DbArchiveEntities db = new DbArchiveEntities();
 
         public DisciplineWindow()
         {
             InitializeComponent();
-            db = new DbArchiveEntities();
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -44,17 +42,35 @@ namespace WPFArchive
                 Rating = Convert.ToInt32(RatingTb.Text)
             };
 
-            db.Discipline.Add(discipline);
+            db.Discipline.Add(discipline); 
             db.SaveChanges();
+            GridStudent.ItemsSource = db.Student.ToList();
         }
 
         private void Button_ClickUpdate(object sender, RoutedEventArgs e)
         {
+            Discipline discipline = new Discipline();
+            int num = (GridDiscipline.SelectedItem as Discipline).DisciplineId;
+            var query = db.Discipline.Where(u => u.DisciplineId == num).FirstOrDefault();
 
+            query.IdStudent = Convert.ToInt32(StudentTb.Text);
+            query.IdDisciplinesList = Convert.ToInt32(DisciplineListCB.SelectedValue);
+            query.NumberOfHours = Convert.ToInt32(NumberOfHoursTb.Text);
+            query.Rating = Convert.ToInt32(RatingTb.Text);
+
+            db.SaveChanges();
+            GridStudent.ItemsSource = db.Student.ToList();
+          
         }
 
         private void Button_ClickRemove(object sender, RoutedEventArgs e)
         {
+            Discipline discipline = new Discipline();
+            int num = (GridDiscipline.SelectedItem as Discipline).DisciplineId;
+            var queryDel = db.Discipline.Where(d => d.DisciplineId == num).FirstOrDefault();
+            db.Discipline.Remove(queryDel);
+            db.SaveChanges();
+            GridStudent.ItemsSource = db.Student.ToList();
 
         }
     }

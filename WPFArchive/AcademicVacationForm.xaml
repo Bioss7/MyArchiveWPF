@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFArchive"
         mc:Ignorable="d"
-        Title="AcademicVacationForm" Height="600" Width="900" Loaded="Window_Loaded">
+        Title="Академический отпуск" Height="600" Width="900" Loaded="Window_Loaded" Icon="Resources/icons8-картотека-96.png" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="73*"/>
-            <ColumnDefinition Width="323*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.Column="0">
             <GroupBox Header="Академический отпуск" Margin="5">
@@ -35,9 +35,9 @@
                     <DatePicker Name="DateExpirationDP" Margin="5 0 5 5"/>
                     <TextBlock Text="Зачислен в группу" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                     <ComboBox Name="NumberGroupCB" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>
-                    <Button Click="Button_ClickAdd" Content="Добавить" Margin="5"/>
-                    <Button Click="Button_ClickUpdate" Content="Обновить" Margin="5"/>
-                    <Button Click="Button_ClickRemove" Content="Удалить" Margin="5"/>
+                    <Button Click="Button_ClickAdd" Content="Добавить" Margin="5 0 5 5" Style="{StaticResource GreenBtn}"/>
+                    <Button Click="Button_ClickUpdate" Content="Обновить" Margin="5 0 5 5" Style="{StaticResource GreenBtn}"/>
+                    <Button Click="Button_ClickRemove" Content="Удалить" Margin="5 0 5 5" Style="{StaticResource GreenBtn}"/>
                 </StackPanel>
             </GroupBox>
         </Grid>
@@ -54,9 +54,9 @@
                         <DataGridTextColumn Header="Фамилия" Binding="{Binding Student.Person.Lastname}"/>
                         <DataGridTextColumn Header="Имя" Binding="{Binding Student.Person.Firstname}" />
                         <DataGridTextColumn Header="Отчество" Binding="{Binding Student.Person.Middlename}"/>
-                        <DataGridTextColumn Header="Дата предоставления" Binding="{Binding DateAcademicLeave}" />
+                        <DataGridTextColumn Header="Дата предоставления" Binding="{Binding DateAcademicLeave, StringFormat=\{0:dd.MM.yy\}}" />
                         <DataGridTextColumn Header="№ приказа" Binding="{Binding OrderNumber}" />
-                        <DataGridTextColumn Header="Дата окончания а/о" Binding="{Binding DateExpiration}" />
+                        <DataGridTextColumn Header="Дата окончания а/о" Binding="{Binding DateExpiration, StringFormat=\{0:dd.MM.yy\}}" />
                         <DataGridTextColumn Header="Зачислен в группу" Binding="{Binding GroupStudentNumber.NumberGroup}" />
                     </DataGrid.Columns>
                 </DataGrid>

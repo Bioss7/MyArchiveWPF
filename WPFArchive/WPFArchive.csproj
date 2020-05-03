@@ -93,6 +93,9 @@
     <Compile Include="AcademicVacationForm.xaml.cs">
       <DependentUpon>AcademicVacationForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ActsWindow.xaml.cs">
+      <DependentUpon>ActsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArchiveModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,6 +110,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchiveModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DescriptionsWindow.xaml.cs">
+      <DependentUpon>DescriptionsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Diploma.cs">
       <DependentUpon>ArchiveModel.tt</DependentUpon>
@@ -157,7 +163,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ActsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DescriptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,6 +228,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EntityDeploy Include="ArchiveModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -228,12 +243,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\IconAuth.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\belaja-koshka-png.png" />
+    <None Include="Resources\ШаблонАкт1.docx" />
+    <None Include="Resources\ШаблонВыпускник.docx" />
+    <None Include="Resources\ШаблонОценки.docx" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\icons8-умный-домашний-щит-64.png" />

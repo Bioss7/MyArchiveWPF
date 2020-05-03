@@ -14,17 +14,15 @@ using System.Windows.Shapes;
 
 namespace WPFArchive
 {
-    /// <summary>
-    /// Логика взаимодействия для TableWindow.xaml
-    /// </summary>
+   
     public partial class TableWindow : Window
     {
-        DbArchiveEntities db;
+        DbArchiveEntities db = new DbArchiveEntities();
 
         public TableWindow()
         {
             InitializeComponent();
-            db = new DbArchiveEntities();
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -32,14 +30,10 @@ namespace WPFArchive
             GridStudents.ItemsSource = db.Student.ToList();
             GridStudentExpelled.ItemsSource = db.Student.ToList();
             GridFired.ItemsSource = db.Employee.ToList();
-
-            GroupCB.ItemsSource = db.GroupStudentNumber.ToList();
-           
+            GroupCB.ItemsSource = db.GroupStudentNumber.ToList();           
             var groupStudent = db.GroupStudentNumber.ToList();
             GroupCB.ItemsSource = groupStudent;
             GroupCbe.ItemsSource = db.GroupStudentNumber.ToList();
-
-
             QualificationCB.ItemsSource = db.Qualification.ToList();
             SpecialtyCB.ItemsSource = db.Specialty.ToList();
         }
@@ -59,8 +53,6 @@ namespace WPFArchive
                 db.SaveChanges();
             }
 
-
-
             if (person != null)
             {
                 person.Lastname = LastNameTB.Text;
@@ -69,10 +61,8 @@ namespace WPFArchive
                 person.DateofBirth = Convert.ToDateTime(DateofBirthDP.SelectedDate);
                 person.IdPersonalDocument = personalDocument.PersonalDocumentId;
 
-
                 db.Person.Add(person);
                 db.SaveChanges();
-
             }
 
             GroupCB.ItemsSource = db.GroupStudentNumber.ToList();
@@ -86,10 +76,8 @@ namespace WPFArchive
                 student.IdPerson = person.PersonId;
                 student.NumberGroup = Convert.ToInt32(GroupCB.SelectedValue);
 
-
                 db.Student.Add(student);
                 db.SaveChanges();
-
             }
 
             if (diploma != null)
@@ -118,12 +106,14 @@ namespace WPFArchive
 
         private void CheckVacationAddTable_Click(object sender, RoutedEventArgs e)
         {
-
+            AcademicVacationForm academicVacationForm = new AcademicVacationForm();
+            academicVacationForm.Show();
         }
 
         private void DisciplineBtnAddTable_Click(object sender, RoutedEventArgs e)
         {
-
+            DisciplineWindow discipline = new DisciplineWindow();
+            discipline.Show();
         }
 
         private void StudentUpdBtn_Click(object sender, RoutedEventArgs e)
@@ -192,8 +182,6 @@ namespace WPFArchive
                 db.SaveChanges();
             }
 
-
-
             if (person != null)
             {
                 person.Lastname = LastNameTBe.Text;
@@ -227,7 +215,6 @@ namespace WPFArchive
             }
 
             GridStudentExpelled.ItemsSource = db.Student.ToList();
-
         }
 
         private void StudentAddUpdExpelled_Click(object sender, RoutedEventArgs e)
@@ -242,13 +229,8 @@ namespace WPFArchive
             {
                 queryUpdate.Person.PersonalDocument.NumberPersonalDocument = NumberPersonalDocumentTBe.Text;
                 queryUpdate.Person.PersonalDocument.NumberInventory = NumberInventoryTBe.Text;
-                queryUpdate.Person.PersonalDocument.ShelfLife = Convert.ToInt16(ShelfLifeTBe.Text);
-
-                //db.PersonalDocument.Add(personalDocument);
-                //db.SaveChanges();
+                queryUpdate.Person.PersonalDocument.ShelfLife = Convert.ToInt16(ShelfLifeTBe.Text);               
             }
-
-
 
             if (person != null)
             {
@@ -256,20 +238,14 @@ namespace WPFArchive
                 queryUpdate.Person.Firstname = FirstTBe.Text;
                 queryUpdate.Person.Middlename = MiddleNameTBe.Text;
                 queryUpdate.Person.DateofBirth = Convert.ToDateTime(DateofBirthDPe.SelectedDate);
-                //queryUpdate.Person.IdPersonalDocument = personalDocument.PersonalDocumentId;
-
-
-                //db.Person.Add(person);
-                //db.SaveChanges();
-
+               
             }
 
             Student student = new Student();
             GroupStudentNumber groupStudentNumber = new GroupStudentNumber();
 
             if (student != null)
-            {
-                //student.IdPerson = person.PersonId;
+            {               
                 queryUpdate.EnrollmentNumber = Convert.ToInt32(EnrollmentNumberTb.Text);
                 queryUpdate.EnrollmentDate = Convert.ToDateTime(EnrollmentDateDp.SelectedDate);
                 queryUpdate.NumberGroup = Convert.ToInt32(GroupCbe.SelectedValue);
@@ -277,12 +253,8 @@ namespace WPFArchive
                 queryUpdate.DeductionDate = Convert.ToDateTime(DeductionDateDp.SelectedDate);
                 queryUpdate.Reasonfordeduction = ReasonfordeductionTb.Text;
 
-                //db.Student.Add(student);
-                //db.SaveChanges();
-
             }
-
-            
+           
             db.SaveChanges();
             GridStudentExpelled.ItemsSource = db.Student.ToList();
 
@@ -358,9 +330,7 @@ namespace WPFArchive
                queryUpdate.Person.PersonalDocument.NumberPersonalDocument = NumberPersonalDocumentEmployeeTB.Text;
                queryUpdate.Person.PersonalDocument.NumberInventory = NumberInventoryEmployeeTB.Text;
                queryUpdate.Person.PersonalDocument.ShelfLife = Convert.ToInt16(ShelfLifeEmployeeTB.Text);
-
-                //db.PersonalDocument.Add(personalDocument);
-                //db.SaveChanges();
+            
             }
 
 
@@ -371,18 +341,12 @@ namespace WPFArchive
                 queryUpdate.Person.Firstname = FirstEmployeeTb.Text;
                 queryUpdate.Person.Middlename = MiddleNameEmployeeTB.Text;
                 queryUpdate.Person.DateofBirth = Convert.ToDateTime(DateofBirthEmployeeDP.SelectedDate);
-                //person.IdPersonalDocument = personalDocument.PersonalDocumentId;
-
-
-                //db.Person.Add(person);
-                //db.SaveChanges();
-
+               
             }
 
             Employee employee = new Employee();
             if (employee != null)
-            {
-                //employee.IdPerson = person.PersonId;
+            {              
                 queryUpdate.NumberReception = Convert.ToInt32(NumberReceptionTB.Text);
                 queryUpdate.DateReception = Convert.ToDateTime(DateReceptionDP.SelectedDate);
                 queryUpdate.Position = PositionTB.Text;
@@ -408,8 +372,7 @@ namespace WPFArchive
         
 
         private void Search_Click(object sender, RoutedEventArgs e)
-        {
-           
+        {           
             //var query = db.Student.ToList().Where(x => x.Person.Firstname.StartsWith(SearchTb.Text) || x.Person.Lastname.StartsWith(SearchTb.Text) || x.Person.Middlename.StartsWith(SearchTb.Text)).ToList();
             var querySearch = db.Student.ToList().Where(x => (x.Person.Firstname + " " + x.Person.Lastname + " " + x.Person.Middlename + " " + x.GroupStudentNumber.NumberGroup + " " + x.StudentId).ToLower()
             .Contains(SearchTb.Text.ToLower()))
@@ -423,7 +386,6 @@ namespace WPFArchive
             var querySearch = db.Student.ToList().Where(x => (x.Person.Firstname + " " + x.Person.Lastname + " " + x.Person.Middlename + " " + x.GroupStudentNumber.NumberGroup + " " + x.StudentId).ToLower()
            .Contains(SearchTbe.Text.ToLower()))
            .ToList();
-
             
             GridStudentExpelled.ItemsSource = querySearch.ToList();
         }
@@ -433,7 +395,7 @@ namespace WPFArchive
             var querySearch = db.Employee.ToList().Where(x => (x.Person.Firstname + " " + x.Person.Lastname + " " + x.Person.Middlename + " " + x.Position).ToLower()
           .Contains(SearchTbeFired.Text.ToLower()))
           .ToList();
-          
+            
             GridFired.ItemsSource = querySearch.ToList();
         }
     }

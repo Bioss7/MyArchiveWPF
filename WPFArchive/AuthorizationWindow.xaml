@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFArchive"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="AuthorizationWindow" Height="387" Width="350" WindowStartupLocation="CenterScreen" FontFamily="Blooming Elegant Sans Regular" Visibility="Visible">
+        Title="Авторизация" Height="387" Width="350" WindowStartupLocation="CenterScreen" FontFamily="Blooming Elegant Sans Regular" Visibility="Visible">
 
     <Border CornerRadius="20" Margin="10" >
         <StackPanel Margin="5">
@@ -15,7 +15,7 @@
             <Label Content="Вход в архив ТТИТ" HorizontalAlignment="Center" FontSize="18" FontFamily="Blooming Elegant Sans Regular" FontWeight="ExtraBold" Foreground="Black"/>
 
             <Label Content="Логин:" FontSize="18" FontFamily="Blooming Elegant Sans Regular" Foreground="#afafae"/>
-            <TextBox BorderThickness="0" FontSize="18" Foreground="#afafae" FontFamily="Blooming Elegant Sans Regular" Background="Transparent" Style="{StaticResource btnW}" Tag="Login"/>
+            <TextBox Text="Admin" BorderThickness="0" FontSize="18" Foreground="#afafae" FontFamily="Blooming Elegant Sans Regular" Background="Transparent" Style="{StaticResource btnW}" Tag="Login"/>
             <Separator></Separator>
             <Label Content="Пароль:" FontSize="18" FontFamily="Blooming Elegant Sans Regular" Foreground="#afafae"/>
             <PasswordBox  BorderThickness="0" x:Name="PasswordTxt" FontSize="18" Password="Hello"></PasswordBox>
@@ -23,7 +23,7 @@
             <Separator></Separator>
 
             <Button Content="ВОЙТИ" Margin="20 10" Height="30" FontSize="18" Foreground="#ffffff" Background="#69a55a" FontFamily="Blooming Elegant Sans Regular" FontWeight="Bold" BorderThickness="0"/>
-            <Button Content="РЕГИСТРАЦИЯ" Margin="20 1" Height="30" FontSize="18" Foreground="#ffffff" Background="#69a55a" FontFamily="Blooming Elegant Sans Regular" FontWeight="Bold" BorderThickness="0"/>
+            <Button Content="РЕГИСТРАЦИЯ" Margin="20 1" Height="30" FontSize="18" Foreground="#ffffff" Background="#69a55a" FontFamily="Blooming Elegant Sans Regular" FontWeight="Bold" BorderThickness="0" Visibility="Collapsed"/>
         </StackPanel>
         
     </Border>

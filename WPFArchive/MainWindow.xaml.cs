@@ -22,7 +22,7 @@ namespace WPFArchive
 
     public partial class MainWindow : Window
     {
-        private readonly string TemplateFileName = @"G:\repos\WPFArchive\WPFArchive\Resources\Шаблон.docx";
+        //private readonly string TemplateFileName = @"G:\repos\WPFArchive\WPFArchive\Resources\Шаблон.docx";
 
         public MainWindow()
         {

@@ -63,20 +63,40 @@ namespace WPFArchive.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap IconAuth {
+        internal static System.Drawing.Bitmap icons8_умный_домашний_щит_64 {
             get {
-                object obj = ResourceManager.GetObject("IconAuth", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_умный_домашний_щит_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_умный_домашний_щит_64 {
+        internal static byte[] ШаблонАкт1 {
             get {
-                object obj = ResourceManager.GetObject("icons8_умный_домашний_щит_64", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("ШаблонАкт1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] ШаблонВыпускник {
+            get {
+                object obj = ResourceManager.GetObject("ШаблонВыпускник", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] ШаблонОценки {
+            get {
+                object obj = ResourceManager.GetObject("ШаблонОценки", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }
