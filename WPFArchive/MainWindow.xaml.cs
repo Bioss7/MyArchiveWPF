@@ -16,6 +16,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MessageBox = System.Windows.MessageBox;
 using Word = Microsoft.Office.Interop.Word;
+using System.Printing;
+
 
 namespace WPFArchive
 {
@@ -30,23 +32,24 @@ namespace WPFArchive
 
 
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           
-
-        }
-
+     
         private void ReplaceWordStub(string stubToReplace, string text, Word.Document wordDocument)
         {
             var range = wordDocument.Content;
             range.Find.ClearFormatting();
             range.Find.Execute(FindText: stubToReplace, ReplaceWith: text);
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+       
+        private void printBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            //var dialog = new System.Windows.Controls.PrintDialog();
+            //if (dialog.ShowDialog() == true)
+            //{
+            //    dialog.PrintVisual(this.card, "Визитная карточка");
+            //}
         }
+
+
     }
 }

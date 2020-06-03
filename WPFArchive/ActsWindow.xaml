@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFArchive"
         mc:Ignorable="d"
-        Title="Акты" Height="200" Width="400" Icon="Resources/icons8-картотека-96.png" WindowStartupLocation="CenterScreen">
+        Title="Акты" Height="200" Width="450" Icon="Resources/icons8-картотека-96.png" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <StackPanel Margin="5">
+            <DataGrid x:Name="GridStudents" AutoGenerateColumns="False" GridLinesVisibility="None" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Номер студента" Width="auto" Binding="{Binding StudentId}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}" Width="auto"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" Width="auto"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}" Width="auto"/>
+                    <DataGridTextColumn Header="Дата рождения" Binding="{Binding Person.DateofBirth, StringFormat=\{0:dd.MM.yy\}}" Width="auto"/>
+                    <DataGridTextColumn Header="Группа" Binding="{Binding GroupStudentNumber.NumberGroup}" Width="auto"/>
+                </DataGrid.Columns>
+            </DataGrid>
             <TextBlock Text="Дата формирования акта" Margin="5 0 5 5"/>
             <DatePicker x:Name="DateHelpDP1" />
             <Button Click="ToFormActs1" Content="Сформировать шаблон акт приёма-передачи личных дел" Style="{StaticResource GreenBtn}" Margin="5"/>

@@ -32,6 +32,8 @@ namespace WPFArchive
 
             QualificationCB.ItemsSource = db.Qualification.ToList();
             SpecialtyCB.ItemsSource = db.Specialty.ToList();
+
+           
         }
        
 
@@ -188,6 +190,12 @@ namespace WPFArchive
             ActsWindow actsWindow = new ActsWindow();
             actsWindow.Show();
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
         }
 
        

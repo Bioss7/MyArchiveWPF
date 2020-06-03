@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,6 +74,25 @@ namespace WPFArchive
             queryUpdate.IdNumberGroup = Convert.ToInt32(NumberGroupCB.SelectedValue);
             db.SaveChanges();
             GridAcademic.ItemsSource = db.AcademicLeave.ToList();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            DataGrid dg = GridAcademic;
+            dg.SelectAllCells();
+            dg.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, dg);
+            dg.UnselectAllCells();
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            try
+            {
+                StreamWriter sw = new StreamWriter("export.doc");
+                sw.WriteLine(result);
+                sw.Close();
+                Process.Start("export.doc");
+            }
+            catch (Exception ex) { }
         }
     }
 }

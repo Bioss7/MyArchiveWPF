@@ -30,23 +30,11 @@ namespace WPFArchive
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            GridStudents.ItemsSource = db.Student.ToList();
-            //GridStudentExpelled.ItemsSource = db.Student.ToList();
-            //GridFired.ItemsSource = db.Employee.ToList();
-
-            //GroupCB.ItemsSource = db.GroupStudentNumber.ToList();
-
-            var groupStudent = db.GroupStudentNumber.ToList();
-            //GroupCB.ItemsSource = groupStudent;
-            //GroupCbe.ItemsSource = db.GroupStudentNumber.ToList();
-
-
-            //QualificationCB.ItemsSource = db.Qualification.ToList();
-            //SpecialtyCB.ItemsSource = db.Specialty.ToList();
-
+            GridStudents.ItemsSource = db.Student.ToList();         
+            var groupStudent = db.GroupStudentNumber.ToList();        
             GridDiscipline.ItemsSource = db.Discipline.ToList();
             GridStudent.ItemsSource = db.Student.ToList();
-            //DisciplineListCB.ItemsSource = db.DisciplineList.ToList();
+            
         }
 
         private void ReplaceWordStub(string stubToReplace, string text, Word.Document wordDocument)
@@ -142,8 +130,8 @@ namespace WPFArchive
 
             var wordApp = new Word.Application();
             wordApp.Visible = false;
-            //try
-            //{
+            try
+            {
                 var wordDoucument = wordApp.Documents.Open(TemplateFileName1);
                 ReplaceWordStub("{datehelp}", Convert.ToString(datehelp.ToString("dd.MM.yy")), wordDoucument);
                 ReplaceWordStub("{lastname}", Lastname, wordDoucument);
@@ -152,8 +140,6 @@ namespace WPFArchive
                 ReplaceWordStub("{dateofbirtth}", Convert.ToString(Dateofbirtth.ToString("dd.MM.yy")), wordDoucument);               
                 ReplaceWordStub("{speciality}", Speciality, wordDoucument);
                 
-
-
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
                 dlg.FileName = "Document"; // Default file name
                 dlg.DefaultExt = ".docx"; // Default file extension           
@@ -168,14 +154,11 @@ namespace WPFArchive
                 wordDoucument.SaveAs(filename);
                 wordApp.Visible = true;
                 wordDoucument = null;
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Ошибка заполнения ");
-            //}
-
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка заполнения ");
+            }
         }
-
-
     }
 }

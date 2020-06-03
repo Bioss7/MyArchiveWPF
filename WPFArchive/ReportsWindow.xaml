@@ -9,8 +9,8 @@
         Title="Справки" Height="650" Width="900" Loaded="Window_Loaded" Icon="Resources/icons8-картотека-96.png" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="18*"/>
-            <RowDefinition Height="601*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="601*"/>
         </Grid.RowDefinitions>
         <Grid Background="#8ac858" MinHeight="50" MinWidth="50">
@@ -258,7 +258,6 @@
                 </Grid>
             </Expander>
         </StackPanel>
-        <Grid Grid.Row="3" Background="#8ac858" MinHeight="50" MinWidth="50">
-        </Grid>
+        
     </Grid>
 </Window>
