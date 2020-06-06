@@ -25,10 +25,11 @@ namespace WPFArchive
         public int ApplicationSeries { get; set; }
         public int ApplicationNumber { get; set; }
         public System.DateTime ApplicationDate { get; set; }
-        public int EnrollmentNumber { get; set; }
-        public System.DateTime EnrollmentDate { get; set; }
-        public int ReleaseNumber { get; set; }
-        public System.DateTime ReleaseDate { get; set; }
+        public Nullable<int> EnrollmentNumber { get; set; }
+        public Nullable<System.DateTime> EnrollmentDate { get; set; }
+        public Nullable<int> ReleaseNumber { get; set; }
+        public Nullable<System.DateTime> ReleaseDate { get; set; }
+        public string NameEducational { get; set; }
     
         public virtual AcademicLeave AcademicLeave { get; set; }
         public virtual Qualification Qualification { get; set; }

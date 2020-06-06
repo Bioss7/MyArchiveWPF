@@ -17,6 +17,7 @@ namespace WPFArchive
     public partial class Main : Window
     {
         DbArchiveEntities db = new DbArchiveEntities();
+        public int GetOrderPerson;
 
         public Main()
         {
@@ -29,11 +30,8 @@ namespace WPFArchive
             var groupStudent = db.GroupStudentNumber.ToList();
             GroupCB.ItemsSource = groupStudent;
             GroupCb.ItemsSource = groupStudent;
-
             QualificationCB.ItemsSource = db.Qualification.ToList();
-            SpecialtyCB.ItemsSource = db.Specialty.ToList();
-
-           
+            SpecialtyCB.ItemsSource = db.Specialty.ToList();    
         }
        
 
@@ -41,14 +39,25 @@ namespace WPFArchive
         {
             Person person = new Person();
             PersonalDocument personalDocument = new PersonalDocument();
+            OrderList orderList = new OrderList();
 
             if (personalDocument != null)
             {
+
+                // Приказ
+                //personalDocument.DateOrder = DpDateOrder.SelectedDate;
+                //personalDocument.NumberOrder = TbNumberOrder.Text;
+                //personalDocument.TitleOrder = TbNumberOrder.Text;
+                ///
+
+                
+
                 personalDocument.NumberPersonalDocument = NumberPersonalDocumentTB.Text;
                 personalDocument.NumberInventory = NumberInventoryTB.Text;
                 personalDocument.ShelfLife = Convert.ToInt16(ShelfLifeTB.Text);
 
                 db.PersonalDocument.Add(personalDocument);
+                //db.OrderList.Add(orderList);
                 db.SaveChanges();
             }
 
@@ -61,14 +70,29 @@ namespace WPFArchive
                 person.Middlename = MiddleNameTB.Text;
                 person.DateofBirth = Convert.ToDateTime(DateofBirthDP.SelectedDate);
                 person.IdPersonalDocument = personalDocument.PersonalDocumentId;
+                person.Аddress = TbAdress.Text;
+                person.NumberPhone = TbNumberPhone.Text;
 
+                //person.IdOrderList = orderList.IdOrderList;
+                
+                
+                
 
                 db.Person.Add(person);
                 db.SaveChanges();
 
+                orderList.IdPerson = person.PersonId;
+                orderList.DateOrder = DpDateOrder.SelectedDate;
+                orderList.NumberOrder = TbNumberOrder.Text;
+                orderList.TitleOrder = TbNumberOrder.Text;
+
+                db.OrderList.Add(orderList);
+                db.SaveChanges();
+                GetOrderPerson = person.PersonId;
             }
 
             MessageBox.Show("Добавлен!");
+
             // Добавление студента выпускника
             if (check1.IsChecked == true)
             {
@@ -82,6 +106,7 @@ namespace WPFArchive
                 {
                     student.IdPerson = person.PersonId;
                     student.NumberGroup = Convert.ToInt32(GroupCB.SelectedValue);
+                    student.GradebookNumber = TbGradebookNumber.Text;
 
 
                     db.Student.Add(student);
@@ -99,10 +124,11 @@ namespace WPFArchive
                     diploma.IdSpecialty = Convert.ToInt32(SpecialtyCB.SelectedValue);
                     diploma.ApplicationSeries = Convert.ToInt32(ApplicationSeriesTB.Text);
                     diploma.ApplicationNumber = Convert.ToInt32(ApplicationNumberTB.Text);
-                    diploma.EnrollmentNumber = Convert.ToInt32(EnrollmentNumberTB.Text);
-                    diploma.EnrollmentDate = Convert.ToDateTime(EnrollmentDateDP.SelectedDate);
-                    diploma.ReleaseNumber = Convert.ToInt32(ReleaseNumberTB.Text);
-                    diploma.ReleaseDate = Convert.ToDateTime(ReleaseDate.SelectedDate);
+                    //diploma.EnrollmentNumber = Convert.ToInt32(EnrollmentNumberTB.Text);
+                    //diploma.EnrollmentDate = Convert.ToDateTime(EnrollmentDateDP.SelectedDate);
+                    //diploma.ReleaseNumber = Convert.ToInt32(ReleaseNumberTB.Text);
+                    //diploma.ReleaseDate = Convert.ToDateTime(ReleaseDate.SelectedDate);
+                    diploma.NameEducational = TbNameEducational.Text;
 
                     db.Diploma.Add(diploma);
                     db.SaveChanges();
@@ -119,10 +145,10 @@ namespace WPFArchive
                 Student student = new Student()
                 {
                     IdPerson = person.PersonId,
-                    EnrollmentNumber = Convert.ToInt32(EnrollmentNumberTb.Text),
-                    EnrollmentDate = Convert.ToDateTime(EnrollmentDateDp.SelectedDate),
-                    DeductionNumber = Convert.ToInt32(DeductionNumberTb.Text),
-                    DeductionDate = Convert.ToDateTime(DeductionDateDp.SelectedDate),
+                    //EnrollmentNumber = Convert.ToInt32(EnrollmentNumberTb.Text),
+                    //EnrollmentDate = Convert.ToDateTime(EnrollmentDateDp.SelectedDate),
+                    //DeductionNumber = Convert.ToInt32(DeductionNumberTb.Text),
+                    //DeductionDate = Convert.ToDateTime(DeductionDateDp.SelectedDate),
                     Reasonfordeduction = ReasonfordeductionTb.Text,
                     NumberGroup = Convert.ToInt32(GroupCb.SelectedValue)
                 };
@@ -141,7 +167,9 @@ namespace WPFArchive
                     Position = PositionTB.Text,
                     NumberFired = Convert.ToInt32(NumberFiredTB.Text),
                     DateFired = Convert.ToDateTime(DateFiredDP.SelectedDate),
-                    СauseFired = СauseFired.Text
+                    СauseFired = СauseFired.Text,
+                    PersonalNumber = TbPersonalNumber.Text
+                    
                 };
 
                 db.Employee.Add(employee);
@@ -198,6 +226,29 @@ namespace WPFArchive
             mainWindow.Show();
         }
 
-       
+        private void CheckBox_Checked(object sender, RoutedEventArgs e) // Для отчества
+        {
+            
+        }
+
+        private void BtnAddOrder_Click(object sender, RoutedEventArgs e)
+        {
+            OrderWindow orderWindow = new OrderWindow(GetOrderPerson);
+            orderWindow.Show();
+                
+
+            //OrderList orderList = new OrderList();
+
+            //orderList.DateOrder = DpDateOrder.SelectedDate;
+            //orderList.NumberOrder = TbNumberOrder.Text;
+            //orderList.TitleOrder = TbNumberOrder.Text;
+            //db.OrderList.Add(orderList);
+        }
+
+        private void BtnOrder(object sender, RoutedEventArgs e)
+        {
+            OrderWindow orderWindow = new OrderWindow(0);
+            orderWindow.Show();
+        }
     }
 }

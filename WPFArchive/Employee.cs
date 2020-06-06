@@ -22,6 +22,7 @@ namespace WPFArchive
         public Nullable<int> NumberFired { get; set; }
         public Nullable<System.DateTime> DateFired { get; set; }
         public string СauseFired { get; set; }
+        public string PersonalNumber { get; set; }
     
         public virtual Person Person { get; set; }
     }

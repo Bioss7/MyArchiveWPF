@@ -22,7 +22,7 @@
                         <DataGrid x:Name="GridStudents" AutoGenerateColumns="False" GridLinesVisibility="None" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Номер студента" Width="auto" Binding="{Binding StudentId}"/>
-                                <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}" Width="auto"/>
+                                <DataGridTextColumn Header="Фамилия" Binding="{Binding Lastname}" Width="auto"/>
                                 <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" Width="auto"/>
                                 <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}" Width="auto"/>
                                 <DataGridTextColumn Header="Дата рождения" Binding="{Binding Person.DateofBirth, StringFormat=\{0:dd.MM.yy\}}" Width="auto"/>
@@ -53,7 +53,14 @@
                                                 <TextBlock Text="{Binding Person.PersonalDocument.ShelfLife}" />
                                             </StackPanel>
                                         </GroupBox>
-                                        <StackPanel Grid.Row="0" Grid.Column="1">
+
+                                        <!--<DataGrid x:Name="DgOrder" Grid.Row="0" Grid.Column="1" AutoGenerateColumns="False" x:FieldModifier="Public">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Номер приказа" Binding="{Binding Person.Middlename}"/>
+                                            </DataGrid.Columns> 
+                                        </DataGrid>-->
+                                        
+                                        <!--<StackPanel Grid.Row="0" Grid.Column="1">
                                             <GroupBox Header="Приказ о зачислении" >
                                                 <StackPanel>
                                                     <TextBlock Text="Номер №" FontWeight="Bold" />
@@ -74,7 +81,7 @@
                                                     <TextBlock Text="{Binding GroupStudentNumber.NumberGroup}" />
                                                 </StackPanel>
                                             </GroupBox>
-                                        </StackPanel>
+                                        </StackPanel>-->
                                         <GroupBox Header="Диплом" Grid.Column="2" >
                                             <StackPanel>
                                                 <TextBlock Text="Серия" FontWeight="Bold" />

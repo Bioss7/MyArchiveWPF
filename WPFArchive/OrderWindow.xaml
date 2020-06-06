@@ -1,0 +1,46 @@
+﻿<Window x:Class="WPFArchive.OrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFArchive"
+        mc:Ignorable="d"
+        Title="Приказы" Height="465.314" Width="450" Icon="Resources/icons8-картотека-96.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="230*"/>
+            <RowDefinition Height="189*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <DataGrid x:Name="DgOrderList" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding IdOrderList}"/>
+                    <DataGridTextColumn Header="№ Человека" Binding="{Binding Person.PersonId}"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Person.Lastname}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Firstname}"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}"/>
+                    <DataGridTextColumn Header="Дата" Binding="{Binding DateOrder, StringFormat=\{0:dd.MM.yy\}}"/>
+                    <DataGridTextColumn Header="Номер приказа" Binding="{Binding NumberOrder}"/>
+                    <DataGridTextColumn Header="Тема приказа" Binding="{Binding TitleOrder}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64*"/>
+                <ColumnDefinition Width="157*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="5">
+                <TextBlock Text="№ Человека" Margin="5 0 5 0"/>
+                <TextBox x:Name="TbPerson" Text="{Binding ElementName=DgOrderList, Path=SelectedItem.Person.PersonId}" Margin="5 0 5 0"/>
+                <TextBlock Text="Дата приказа" Margin="5 0 5 0"/>
+                <DatePicker x:Name="DpDateOrder" Margin="5 0 5 5"/>
+                <TextBlock Text="Номер приказа" Margin="5 0 5 0"/>
+                <TextBox x:Name="TbNumberOrder"  Margin="5 0 5 5"/>
+                <TextBlock Text="Тема приказа" Margin="5 0 5 0"/>
+                <TextBox x:Name="TbTitleOrder"  Margin="5 0 5 5"/>
+                <Button x:Name="BtnAddOrder" Click="BtnAddOrder_Click" Content="Добавить приказ" Style="{StaticResource GreenBtn}" Margin="5" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="be85ea6e2102407b8ca355fc33cc3533" Name="Diagram1">
-        <EntityTypeShape EntityType="DbArchiveModel.AcademicLeave" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.Diploma" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.Discipline" Width="1.5" PointX="11.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.DisciplineList" Width="1.5" PointX="9" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.Employee" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.GroupStudentNumber" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+      <Diagram DiagramId="b90757a56c9944bfa4ba9dfcb9fef1b9" Name="Diagram1">
+        <EntityTypeShape EntityType="DbArchiveModel.AcademicLeave" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.Diploma" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.Discipline" Width="1.5" PointX="11.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.DisciplineList" Width="1.5" PointX="9" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.Employee" Width="1.5" PointX="6" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.GroupStudentNumber" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.OrderList" Width="1.5" PointX="6" PointY="16.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DbArchiveModel.Person" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.PersonalDocument" Width="1.5" PointX="1.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.Qualification" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.Specialty" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.Student" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbArchiveModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.PersonalDocument" Width="1.5" PointX="1.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.Qualification" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.Specialty" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.Student" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbArchiveModel.User" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
         <AssociationConnector Association="DbArchiveModel.FK_AcademicLeave_GroupStudentNumber" ManuallyRouted="false" />
         <AssociationConnector Association="DbArchiveModel.FK_AcademicLeave_Student" ManuallyRouted="false" />
         <AssociationConnector Association="DbArchiveModel.FK_Diploma_AcademicLeave" ManuallyRouted="false" />
@@ -27,9 +28,9 @@
         <AssociationConnector Association="DbArchiveModel.FK_Discipline_Student" ManuallyRouted="false" />
         <AssociationConnector Association="DbArchiveModel.FK_Employee_Person" ManuallyRouted="false" />
         <AssociationConnector Association="DbArchiveModel.FK_Student_GroupStudentNumber" ManuallyRouted="false" />
+        <AssociationConnector Association="DbArchiveModel.FK_OrderList_Person" ManuallyRouted="false" />
         <AssociationConnector Association="DbArchiveModel.FK_Person_PersonalDocument" ManuallyRouted="false" />
         <AssociationConnector Association="DbArchiveModel.FK_Student_Person" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DbArchiveModel.User" Width="1.5" PointX="8.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

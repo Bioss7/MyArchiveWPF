@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFArchive"
         mc:Ignorable="d"
-        Title="Архив" Height="500" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="Resources/icons8-картотека-96.png" SizeToContent="WidthAndHeight">
+        Title="Архив" Height="700" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="Resources/icons8-картотека-96.png" SizeToContent="WidthAndHeight">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Style TargetType="TextBox" x:Key="btnmy">
@@ -81,9 +81,11 @@
                 <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
                     <TextBlock Text="Личные дела" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="Gray" />
                     <Button Click="SearchBtn" Content=" Поиск" Margin="10 5 10 0" Padding="5" Style="{StaticResource GreenBtn}"/>
-                    <Button Click="Button_Click" Content="Описи" Margin="10 5 10 0" Style="{StaticResource GreenBtn}" Visibility="Visible"/>
+                    <Button Click="Button_Click" Content="Описи" Margin="10 5 10 0" Style="{StaticResource GreenBtn}" Visibility="Collapsed"/>
                     <Button Click="ReportsBtn" Content="Справки" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
                     <Button Click="ActsBtn" Content="Акты" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
+                    <Button Click="BtnOrder" Content="Приказы" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
+                    
                     <Button Content="Внести данные" Margin="10" Padding="5" Click="Button_ClickAddData" Style="{StaticResource GreenBtn}"/>
                     <!--<Button Content="Внести данные" Margin="10" Padding="5" Click="Button_Click" Foreground="White" Background="Green" FontSize="12"/>-->
                 </StackPanel>
@@ -110,14 +112,14 @@
                                     <TextBox x:Name="LastNameTB" Margin="5 0 5 5" Text="Иванов"/>
                                     <TextBlock Text="Имя:" Margin="5 0 5 0"/>
                                     <TextBox x:Name="FirstTB" Margin="5 0 5 5" Text="Иван"/>
-                                    <CheckBox Content="Отчество" Margin="5 0 5 0"/>
+                                    <CheckBox x:Name="check4" Content="Отчество" Margin="5 0 5 0" Checked="CheckBox_Checked"/>
                                     <TextBox  x:Name="MiddleNameTB" Margin="5 0 5 5" Text="Иванович"/>
                                     <TextBlock Text="Дата рождения:" Margin="5 0 5 0"/>
                                     <DatePicker x:Name="DateofBirthDP" Margin="5 0 5 5" Text="30.04.95"/>
                                     <TextBlock Text="Адрес проживания" Margin="5 0 5 0"/>
-                                    <TextBox Margin="5 0 5 0"/>
+                                    <TextBox x:Name="TbAdress" Margin="5 0 5 0"/>
                                     <TextBlock Text="Номер телефона" Margin="5 0 5 0"/>
-                                    <TextBox Margin="5 0 5 0"/>
+                                    <TextBox x:Name="TbNumberPhone" Margin="5 0 5 0"/>
                                     <TextBlock Text="Номер личного дела №:" Margin="5 0 5 0"/>
                                     <TextBox x:Name="NumberPersonalDocumentTB"  Margin="5 0 5 5" Text="1"/>
                                     <TextBlock Text="Номер описи №:" Margin="5 0 5 0"/>
@@ -127,6 +129,14 @@
                                         <TextBlock Text="70"/>
                                         <TextBlock Text="50"/>
                                     </ComboBox>
+                                    <TextBlock Text="Дата приказа" Margin="5 0 5 0"/>
+                                    <DatePicker x:Name="DpDateOrder" Margin="5 0 5 5"/>
+                                    <TextBlock Text="Номер приказа" Margin="5 0 5 0"/>
+                                    <TextBox x:Name="TbNumberOrder"  Margin="5 0 5 5"/>
+                                    <TextBlock Text="Тема приказа" Margin="5 0 5 0"/>
+                                    <TextBox x:Name="TbTitleOrder"  Margin="5 0 5 5"/>
+                                    <Button x:Name="BtnAddOrder" Click="BtnAddOrder_Click" Content="Добавить приказ" Style="{StaticResource GreenBtn}" Margin="5" />
+                                    
                                     <!--<TextBox x:Name="ShelfLifeTB" Margin="5 0 5 5" Text="70"/>-->
                                     <CheckBox x:Name="check1" IsChecked="False" Content="Выпускник" Margin="5 0 5 5"  />
                                     <CheckBox x:Name="check2" IsChecked="False" Content="Отчислен" Margin="5 0 5 5"/>
@@ -149,24 +159,28 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="155*"/>
-                    <ColumnDefinition Width="150*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <GroupBox Header="Приказ о зачислении" Grid.Column="0" Grid.Row="0" Margin="5">
+                <!--<GroupBox Header="Приказ" Grid.Column="0" Grid.Row="0" Margin="5">
                     <StackPanel>
-                        <TextBlock Text="Номер №" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                        --><!--<TextBlock Text="Номер №" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                         <TextBox x:Name="EnrollmentNumberTB" Margin="5 0 5 5"/>
                         <TextBlock Text="Дата" HorizontalAlignment="Left" Margin="5 5 5 0"/>
-                        <DatePicker x:Name="EnrollmentDateDP" Margin="5 0 5 5"/>
-                        <TextBlock Text="Группа" HorizontalAlignment="Left" Margin="5 5 5 0"/>
-                        <ComboBox Name="GroupCB" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>
-
+                        <DatePicker x:Name="EnrollmentDateDP" Margin="5 0 5 5"/>--><!--
+                        <TextBlock Text="Дата приказа" Margin="5 0 5 0"/>
+                        <DatePicker x:Name="DpDateOrder" Margin="5 0 5 5"/>
+                        <TextBlock Text="Номер приказа" Margin="5 0 5 0"/>
+                        <TextBox x:Name="TbNumberOrder"  Margin="5 0 5 5"/>
+                        <TextBlock Text="Тема приказа" Margin="5 0 5 0"/>
+                        <TextBox x:Name="TbTitleOrder"  Margin="5 0 5 5"/>
+                        <Button x:Name="BtnAddOrder" Click="BtnAddOrder_Click" Content="Добавить приказ" Style="{StaticResource GreenBtn}" Margin="5" />
                     </StackPanel>
-                </GroupBox>
-                <GroupBox Header="Приказ об выпуске" Grid.Column="1" Grid.Row="0" Margin="5">
+                </GroupBox>-->
+                <!--<GroupBox Header="Приказ об выпуске" Grid.Column="1" Grid.Row="0" Margin="5">
                     <StackPanel>
                         <TextBlock Text="Номер №" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                         <TextBox x:Name="ReleaseNumberTB" Margin="5 0 5 5"/>
@@ -174,7 +188,7 @@
                         <DatePicker x:Name="ReleaseDate" Margin="5 0 5 5"/>
 
                     </StackPanel>
-                </GroupBox>
+                </GroupBox>-->
                 <GroupBox Header="Диплом" Grid.Column="0" Grid.Row="1" Margin="5">
                     <StackPanel>
                         <TextBlock Text="Серия: " HorizontalAlignment="Left" Margin="5 5 5 0"/>
@@ -206,9 +220,21 @@
                     </GroupBox>
                     <GroupBox Header="Номер зачетной книжки">
                         <StackPanel>
-                            <TextBox Margin="5 0 5 5"/>
+                            <TextBox x:Name="TbGradebookNumber" Margin="5 0 5 5"/>
                         </StackPanel>
                     </GroupBox>
+                    <GroupBox Header="Образовательное учреждение">
+                        <StackPanel>
+                            <TextBox x:Name="TbNameEducational" Margin="5 0 5 5"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <TextBlock Text="Группа" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                            <ComboBox Name="GroupCB" ItemsSource="{Binding GroupStudentNumber}" DisplayMemberPath="NumberGroup"  SelectedValuePath="GroupStudentNumberId" SelectedValue="{Binding Path=GroupStudentNumberId}" Margin="5 0 5 5"/>
+                        </StackPanel>
+                    </GroupBox>
+                    
                 </StackPanel>
             </Grid>
             <!--Уволенные-->
@@ -237,6 +263,8 @@
                             <DatePicker x:Name="DateReceptionDP" Margin="5 0 5 5"/>
                             <TextBlock Text="Должность:" Margin="5 5 5 0"/>
                             <TextBox x:Name="PositionTB" Margin="5 0 5 5"/>
+                            <TextBlock Text="Табельный номер:" Margin="5 5 5 0"/>
+                            <TextBox x:Name="TbPersonalNumber" Margin="5 0 5 5"/>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Приказ об увольнение" Margin="5" Grid.Row="0" Grid.Column="1">

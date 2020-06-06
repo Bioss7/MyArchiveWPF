@@ -18,6 +18,7 @@ namespace WPFArchive
         public Person()
         {
             this.Employee = new HashSet<Employee>();
+            this.OrderList = new HashSet<OrderList>();
             this.Student = new HashSet<Student>();
         }
     
@@ -27,9 +28,14 @@ namespace WPFArchive
         public string Middlename { get; set; }
         public System.DateTime DateofBirth { get; set; }
         public int IdPersonalDocument { get; set; }
+        public string Аddress { get; set; }
+        public string NumberPhone { get; set; }
+        public Nullable<int> IdOrderList { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderList> OrderList { get; set; }
         public virtual PersonalDocument PersonalDocument { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Student { get; set; }

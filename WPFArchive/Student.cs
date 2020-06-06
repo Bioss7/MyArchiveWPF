@@ -30,6 +30,7 @@ namespace WPFArchive
         public Nullable<System.DateTime> EnrollmentDate { get; set; }
         public Nullable<int> DeductionNumber { get; set; }
         public Nullable<System.DateTime> DeductionDate { get; set; }
+        public string GradebookNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AcademicLeave> AcademicLeave { get; set; }

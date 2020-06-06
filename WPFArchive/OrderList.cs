@@ -12,12 +12,14 @@ namespace WPFArchive
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class OrderList
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int IdOrderList { get; set; }
+        public string NumberOrder { get; set; }
+        public string TitleOrder { get; set; }
+        public Nullable<System.DateTime> DateOrder { get; set; }
+        public Nullable<int> IdPerson { get; set; }
+    
+        public virtual Person Person { get; set; }
     }
 }

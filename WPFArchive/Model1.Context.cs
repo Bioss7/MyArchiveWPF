@@ -31,12 +31,12 @@ namespace WPFArchive
         public virtual DbSet<DisciplineList> DisciplineList { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<GroupStudentNumber> GroupStudentNumber { get; set; }
+        public virtual DbSet<OrderList> OrderList { get; set; }
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<PersonalDocument> PersonalDocument { get; set; }
         public virtual DbSet<Qualification> Qualification { get; set; }
         public virtual DbSet<Specialty> Specialty { get; set; }
         public virtual DbSet<Student> Student { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

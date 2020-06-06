@@ -22,7 +22,10 @@ namespace WPFArchive
         public TableWindow()
         {
             InitializeComponent();
+
             
+
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -36,6 +39,7 @@ namespace WPFArchive
             GroupCbe.ItemsSource = db.GroupStudentNumber.ToList();
             QualificationCB.ItemsSource = db.Qualification.ToList();
             SpecialtyCB.ItemsSource = db.Specialty.ToList();
+            
         }
 
         private void StudentAddBtn_Click(object sender, RoutedEventArgs e)
