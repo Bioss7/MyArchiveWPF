@@ -47,32 +47,52 @@ namespace WPFArchive
 
         private void ToForm_Click(object sender, RoutedEventArgs e)
         {
-            var datehelp = Convert.ToDateTime(DateHelpDP.SelectedDate.Value.ToShortDateString());
-            var Lastname = LastNameTB.Text; 
-            var Firstname = FirstTB.Text;  
-            var Middlename = MiddleNameTB.Text; 
-            var Dateofbirtth = Convert.ToDateTime(DateofBirthDP.SelectedDate.Value.ToShortDateString()); 
-            var Enroll = Convert.ToDateTime(EnrollDP.SelectedDate.Value.ToShortDateString()); 
-            var Group = GroupTB.Text; 
-            var Speciality = SpecialtyTB.Text; 
-            var DatePeriod = DatePeriodTB.Text;           
-            var EnrollmentDate = Convert.ToDateTime(EnrollmentDateDP.SelectedDate.Value.ToShortDateString()); 
-            var EnrollmentNumber = EnrollmentNumberTB.Text;
-            var EnrollStudent = Convert.ToDateTime(EnrollStudentDP.SelectedDate.Value.ToShortDateString());
-            var orderReleasedDate = Convert.ToDateTime(ReleaseDate.SelectedDate.Value.ToShortDateString());
-            var NumberReleased = ReleaseNumberTB.Text;
-            var Series = SeriesTB.Text;
-            var Number = NumberTB.Text;
-            var ApplicationDate = Convert.ToDateTime(ApplicationDateDP.SelectedDate.Value.ToShortDateString());
-            var RegistrationNumber = RegistrationNumberTB.Text;
+            
+
+            //var datehelp = Convert.ToDateTime(DateHelpDP.SelectedDate.Value.ToShortDateString());
+            //var Lastname = LastNameTB.Text; 
+            //var Firstname = FirstTB.Text;  
+            //var Middlename = MiddleNameTB.Text; 
+            //var Dateofbirtth = Convert.ToDateTime(DateofBirthDP.SelectedDate.Value.ToShortDateString()); 
+            //var Enroll = Convert.ToDateTime(EnrollDP.SelectedDate.Value.ToShortDateString()); 
+            //var Group = GroupTB.Text; 
+            //var Speciality = SpecialtyTB.Text; 
+            //var DatePeriod = DatePeriodTB.Text;           
+            //var EnrollmentDate = Convert.ToDateTime(EnrollmentDateDP.SelectedDate.Value.ToShortDateString()); 
+            //var EnrollmentNumber = EnrollmentNumberTB.Text;
+            //var EnrollStudent = Convert.ToDateTime(EnrollStudentDP.SelectedDate.Value.ToShortDateString());
+            //var orderReleasedDate = Convert.ToDateTime(ReleaseDate.SelectedDate.Value.ToShortDateString());
+            //var NumberReleased = ReleaseNumberTB.Text;
+            //var Series = SeriesTB.Text;
+            //var Number = NumberTB.Text;
+            //var ApplicationDate = Convert.ToDateTime(ApplicationDateDP.SelectedDate.Value.ToShortDateString());
+            //var RegistrationNumber = RegistrationNumberTB.Text;
 
 
             var wordApp = new Word.Application();
             wordApp.Visible = false;
             try
             {
+                var Lastname = LastNameTB.Text;
+                var Firstname = FirstTB.Text;
+                var Middlename = MiddleNameTB.Text;
+                var Dateofbirtth = Convert.ToDateTime(DateofBirthDP.SelectedDate.Value.ToShortDateString());
+                var Enroll = Convert.ToDateTime(EnrollDP.SelectedDate.Value.ToShortDateString());
+                var Group = GroupTB.Text;
+                var Speciality = SpecialtyTB.Text;
+                var DatePeriod = DatePeriodTB.Text;
+                var EnrollmentDate = Convert.ToDateTime(EnrollmentDateDP.SelectedDate.Value.ToShortDateString());
+                var EnrollmentNumber = EnrollmentNumberTB.Text;
+                var EnrollStudent = Convert.ToDateTime(EnrollStudentDP.SelectedDate.Value.ToShortDateString());
+                //var orderReleasedDate = Convert.ToDateTime(ReleaseDate.SelectedDate.Value.ToShortDateString());
+                var NumberReleased = ReleaseNumberTB.Text;
+                var Series = SeriesTB.Text;
+                var Number = NumberTB.Text;
+                var ApplicationDate = Convert.ToDateTime(ApplicationDateDP.SelectedDate.Value.ToShortDateString());
+                var RegistrationNumber = RegistrationNumberTB.Text;
+
                 var wordDoucument = wordApp.Documents.Open(TemplateFileName);
-                ReplaceWordStub("{datehelp}", Convert.ToString(datehelp.ToString("dd.MM.yy")), wordDoucument);
+                //ReplaceWordStub("{datehelp}", Convert.ToString(datehelp.ToString("dd.MM.yy")), wordDoucument);
                 ReplaceWordStub("{lastname}", Lastname, wordDoucument);
                 ReplaceWordStub("{firstname}", Firstname, wordDoucument);
                 ReplaceWordStub("{middlename}", Middlename, wordDoucument);
@@ -88,7 +108,7 @@ namespace WPFArchive
                 ReplaceWordStub("{firstname}", Firstname, wordDoucument);
                 ReplaceWordStub("{middlename}", Middlename, wordDoucument);
                 ReplaceWordStub("{speciality}", Speciality, wordDoucument);
-                ReplaceWordStub("{orderReleasedDate}", Convert.ToString(orderReleasedDate.ToString("dd.MM.yy")), wordDoucument);
+                //ReplaceWordStub("{orderReleasedDate}", Convert.ToString(orderReleasedDate.ToString("dd.MM.yy")), wordDoucument);
                 ReplaceWordStub("{NumberReleased}", NumberReleased, wordDoucument);
                 ReplaceWordStub("{seria}", Series, wordDoucument);
                 ReplaceWordStub("{number}", Number, wordDoucument);

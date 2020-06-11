@@ -31,7 +31,7 @@ namespace WPFArchive
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {           
             GridStudents.ItemsSource = db.Student.ToList();
-            GridStudentExpelled.ItemsSource = db.Student.ToList();
+            GridStudentExpelled.ItemsSource = db.Student.ToList();            
             GridFired.ItemsSource = db.Employee.ToList();
             GroupCB.ItemsSource = db.GroupStudentNumber.ToList();           
             var groupStudent = db.GroupStudentNumber.ToList();
@@ -39,7 +39,9 @@ namespace WPFArchive
             GroupCbe.ItemsSource = db.GroupStudentNumber.ToList();
             QualificationCB.ItemsSource = db.Qualification.ToList();
             SpecialtyCB.ItemsSource = db.Specialty.ToList();
-            
+          
+
+
         }
 
         private void StudentAddBtn_Click(object sender, RoutedEventArgs e)
@@ -401,6 +403,13 @@ namespace WPFArchive
           .ToList();
             
             GridFired.ItemsSource = querySearch.ToList();
+        }
+
+        private void BtnOrder_Click(object sender, RoutedEventArgs e)
+        {
+                int num = (GridStudentExpelled.SelectedItem as Student).Person.PersonId;                
+                OrderWindow orderWindow = new OrderWindow(num);
+                orderWindow.Show();
         }
     }
 }

@@ -1,0 +1,101 @@
+﻿<Window x:Class="WPFArchive.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFArchive"
+        mc:Ignorable="d"
+        Title="Настройки" Height="500" Width="200" Icon="Resources/icons8-картотека-96.png" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <GroupBox Header="Добавление группы">
+                    <StackPanel>
+                        <DataGrid x:Name="DgGroup" AutoGenerateColumns="False" Width="auto">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Группа" Binding="{Binding NumberGroup}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Text="Группа"/>
+                        <TextBox x:Name="TbGroup"/>
+                        <Button x:Name="BtnGroupAdd" Click="BtnGroupAdd_Click" Content="Добавить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                        <Button x:Name="BtnGroupDel" Click="BtnGroupDel_Click" Content="Удалить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Добавление квалификации">
+                    <StackPanel>
+                        <DataGrid x:Name="DgQ" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Квалификация" Width="auto" Binding="{Binding NameQualification}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Text="Квалификация"/>
+                        <TextBox x:Name="TbQ"/>
+                        <Button x:Name="BtnQAdd" Click="BtnQAdd_Click" Content="Добавить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                        <Button x:Name="BtnQDel" Click="BtnQDel_Click" Content="Удалить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                        
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Добавление специальности">
+                    <StackPanel>
+                        <DataGrid x:Name="DgS" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Специальность" Width="auto" Binding="{Binding SpecialtyName}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Text="Специальность"/>
+                        <TextBox  x:Name="TbS"/>
+                        <Button x:Name="BtnAddS" Click="BtnAddS_Click" Content="Добавить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                        <Button  x:Name="BtnADelS" Click="BtnADelS_Click" Content="Удалить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <StackPanel>
+                    <!--<GroupBox Header="Добавление специальности">
+                        <StackPanel>
+                            <DataGrid x:Name="DgS" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Специальность" Width="auto" Binding="{Binding SpecialtyName}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <TextBlock Text="Специальность"/>
+                            <TextBox  x:Name="TbS"/>
+                            <Button x:Name="BtnAddS" Click="BtnAddS_Click" Content="Добавить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                            <Button  x:Name="BtnADelS" Click="BtnADelS_Click" Content="Удалить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                        </StackPanel>
+                    </GroupBox>-->
+                    <!--<GroupBox Header="Добавление срока хранения">
+                        <StackPanel>
+                            <TextBlock Text="Срок хранения"/>
+                            <TextBox />
+                            <Button x:Name="BtnAdd" Content="Добавить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                            <Button Content="Удалить" Margin="5" Style="{StaticResource GreenBtn}"/>
+                        </StackPanel>
+                    </GroupBox>-->
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="159*"/>
+                <ColumnDefinition Width="433*"/>
+            </Grid.ColumnDefinitions>
+            <!--<DataGrid x:Name="DgGroup" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Группа" Binding="{Binding NumberGroup}"/> 
+                </DataGrid.Columns>
+            </DataGrid>-->
+        </Grid>
+    </Grid>
+</Window>

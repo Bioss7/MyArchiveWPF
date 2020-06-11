@@ -60,5 +60,28 @@ namespace WPFArchive
             }   
            
         }
+
+        private void BtnDelOrder_Click(object sender, RoutedEventArgs e)
+        {
+            int num = (DgOrderList.SelectedItem as OrderList).IdOrderList;
+            var q = db.OrderList.Where(u => u.IdOrderList == num).FirstOrDefault();
+            db.OrderList.Remove(q);
+            db.SaveChanges();
+
+            if (GetP == 0)          
+                DgOrderList.ItemsSource = db.OrderList.ToList();
+
+            if (GetP != 0)
+                DgOrderList.ItemsSource = db.OrderList.ToList().Where(u => u.IdPerson == GetP);
+        }
+
+        private void TbSearch_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            var q = db.OrderList.ToList().Where(x => (x.NumberOrder + " " + x.Person.Lastname + " " + x.Person.Firstname + " " + x.Person.Middlename)
+            .ToLower()
+            .Contains(TbSearch.Text.ToLower())).ToList();
+            DgOrderList.ItemsSource = q;
+
+        }
     }
 }

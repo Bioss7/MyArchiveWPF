@@ -22,7 +22,9 @@
                         <DataGrid x:Name="GridStudents" AutoGenerateColumns="False" GridLinesVisibility="None" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Номер студента" Width="auto" Binding="{Binding StudentId}"/>
-                                <DataGridTextColumn Header="Фамилия" Binding="{Binding Lastname}" Width="auto"/>
+                                <DataGridTextColumn Header="Опись" Binding="{Binding Person.PersonalDocument.NumberInventory}" Width="auto"/>
+                                <DataGridTextColumn Header="Номер личного дела" Binding="{Binding Person.PersonalDocument.NumberPersonalDocument}" Width="auto"/>
+                                <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}" Width="auto"/>
                                 <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" Width="auto"/>
                                 <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}" Width="auto"/>
                                 <DataGridTextColumn Header="Дата рождения" Binding="{Binding Person.DateofBirth, StringFormat=\{0:dd.MM.yy\}}" Width="auto"/>
@@ -324,6 +326,9 @@
                     <DataGrid x:Name="GridStudentExpelled" AutoGenerateColumns="False" Grid.Column="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер студента" Width="auto" Binding="{Binding StudentId}"/>
+                            <DataGridTextColumn Header="Номер студента" Width="auto" Binding="{Binding Person.PersonId}"/>
+                            <DataGridTextColumn Header="Опись" Binding="{Binding Person.PersonalDocument.NumberInventory}" Width="auto"/>
+                            <DataGridTextColumn Header="Номер личного дела" Binding="{Binding Person.PersonalDocument.NumberPersonalDocument}" Width="auto"/>
                             <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}" Width="auto"/>
                             <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" Width="auto"/>
                             <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}" Width="auto"/>
@@ -354,9 +359,10 @@
                                                     <TextBlock Text="{Binding Person.PersonalDocument.NumberInventory}" />
                                                     <TextBlock Text="Срок хранения" />
                                                     <TextBlock Text="{Binding Person.PersonalDocument.ShelfLife}" />
+                                                    <Button x:Name="BtnOrder" Click="BtnOrder_Click" Content="Посмотреть приказы" Style="{StaticResource GreenBtn}"/>
                                                 </StackPanel>
                                             </GroupBox>
-                                            <GroupBox Header="Приказ о зачислении" Margin="5">
+                                            <!--<GroupBox Header="Приказ о зачислении" Margin="5">
                                                 <StackPanel>
                                                     <TextBlock Text="Номер №" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                                                     <TextBlock Text="{Binding EnrollmentNumber}" Margin="5 0 5 5"/>
@@ -373,13 +379,13 @@
                                                     <TextBlock Text="Дата" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                                                     <TextBlock Text="{Binding DeductionDate, StringFormat=\{0:dd.MM.yy\}}" Margin="5 0 5 5"/>
                                                 </StackPanel>
-                                            </GroupBox>
+                                            </GroupBox>-->
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <GroupBox Header="Причина отчисления" Grid.Row="1" Grid.Column="0">
+                                        <!--<GroupBox Header="Причина отчисления" Grid.Row="1" Grid.Column="0">
                                             <TextBlock  Text="{Binding Reasonfordeduction}" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                                        </GroupBox>
+                                        </GroupBox>-->
                                     </Grid>
 
 
@@ -485,6 +491,8 @@
                     <DataGrid x:Name="GridFired" AutoGenerateColumns="False" Grid.Column="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер сотрудника" Width="auto" Binding="{Binding EmployeeId}"/>
+                            <DataGridTextColumn Header="Опись" Binding="{Binding Person.PersonalDocument.NumberInventory}" Width="auto"/>
+                            <DataGridTextColumn Header="Номер личного дела" Binding="{Binding Person.PersonalDocument.NumberPersonalDocument}" Width="auto"/>
                             <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}" Width="auto"/>
                             <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" Width="auto"/>
                             <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}" Width="auto"/>

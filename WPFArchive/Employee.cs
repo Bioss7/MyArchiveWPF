@@ -16,8 +16,8 @@ namespace WPFArchive
     {
         public int EmployeeId { get; set; }
         public int IdPerson { get; set; }
-        public int NumberReception { get; set; }
-        public System.DateTime DateReception { get; set; }
+        public Nullable<int> NumberReception { get; set; }
+        public Nullable<System.DateTime> DateReception { get; set; }
         public string Position { get; set; }
         public Nullable<int> NumberFired { get; set; }
         public Nullable<System.DateTime> DateFired { get; set; }

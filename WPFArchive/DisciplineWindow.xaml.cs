@@ -45,6 +45,7 @@ namespace WPFArchive
             db.Discipline.Add(discipline); 
             db.SaveChanges();
             GridStudent.ItemsSource = db.Student.ToList();
+            GridDiscipline.ItemsSource = db.Discipline.ToList();
         }
 
         private void Button_ClickUpdate(object sender, RoutedEventArgs e)

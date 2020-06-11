@@ -16,7 +16,7 @@
         <Grid Background="#8ac858" MinHeight="50" MinWidth="50">
         </Grid>
         <StackPanel Grid.Row="1">
-            <Expander Header="Архивная справка для студента выпускника" Grid.Row="2">
+            <Expander Header="Архивная справка" Grid.Row="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -28,7 +28,7 @@
                             <RowDefinition Height="49*"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <GroupBox Header="Данные для отчета студента">
+                        <GroupBox Header="Данные">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
@@ -60,15 +60,15 @@
                                     <TextBox x:Name="DatePeriodTB" Margin="5 0 5 5"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock Text="Приказом от" Margin="5 0 5 5"/>
+                                    <TextBlock Text="Зачислен приказом" Margin="5 0 5 5"/>
                                     <DatePicker x:Name="EnrollmentDateDP" SelectedDate="{Binding ElementName=GridStudents, Path=SelectedValue.Diploma/EnrollmentDate, StringFormat=\{0:dd.MM.yy\}}" Margin="5 0 5 5"/>
-                                    <TextBlock Text="№ номером" Margin="5 0 5 5"/>
+                                    <TextBlock Text="№ приказа" Margin="5 0 5 5"/>
                                     <TextBox x:Name="EnrollmentNumberTB" Text="{Binding ElementName=GridStudents, Path=SelectedValue.Diploma/EnrollmentNumber}" Margin="5 0 5 5"/>
-                                    <TextBlock Text="Дата выпущен из студентов" Margin="5 0 5 5"/>
+                                    <TextBlock Text="Дата выпуска/отчисления" Margin="5 0 5 5"/>
                                     <DatePicker Name="EnrollStudentDP" Margin="5 0 5 5"/>
-                                    <TextBlock Text="Приказом об выпуске дата" Margin="5 0 5 0"/>
-                                    <DatePicker x:Name="ReleaseDate" SelectedDate="{Binding ElementName=GridStudents, Path=SelectedValue.Diploma/ReleaseDate, StringFormat=\{0:dd.MM.yy\}}" Margin="5 0 5 5"/>
-                                    <TextBlock Text="Приказом об выпуске номер" Margin="5 0 5 0"/>
+                                    <!--<TextBlock Text="Приказом об выпуске дата" Margin="5 0 5 0"/>-->
+                                    <!--<DatePicker x:Name="ReleaseDate" SelectedDate="{Binding ElementName=GridStudents, Path=SelectedValue.Diploma/ReleaseDate, StringFormat=\{0:dd.MM.yy\}}" Margin="5 0 5 5"/>-->
+                                    <TextBlock Text="№ приказа" Margin="5 0 5 0"/>
                                     <TextBox x:Name="ReleaseNumberTB" Text="{Binding ElementName=GridStudents, Path=SelectedValue.Diploma/ReleaseNumber}" Margin="5 0 5 5"/>
                                     <TextBlock Text="Диплом образца серия" Margin="5 0 5 0"/>
                                     <TextBox x:Name="SeriesTB" Text="{Binding ElementName=GridStudents, Path=SelectedItem.Diploma/Series}" Margin="5 0 5 5"/>
@@ -191,7 +191,7 @@
                     </Grid>
                 </Grid>
             </Expander>
-            <Expander Header="Справка о оценках">
+            <Expander Header="Академическая справка">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFArchive"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="Авторизация" Height="387" Width="350" WindowStartupLocation="CenterScreen" FontFamily="Blooming Elegant Sans Regular" Visibility="Visible">
+        Title="Авторизация" Height="387" Width="350" WindowStartupLocation="CenterScreen" FontFamily="Blooming Elegant Sans Regular" Visibility="Visible" Icon="Resources/icons8-картотека-96.png">
 
     <Border CornerRadius="20" Margin="10" >
         <StackPanel Margin="5">
@@ -18,7 +18,7 @@
             <TextBox x:Name="login" Text="Admin" BorderThickness="0" FontSize="18" Foreground="#afafae" FontFamily="Blooming Elegant Sans Regular" Background="Transparent" Tag="Login"/>
             <Separator></Separator>
             <Label Content="Пароль:" FontSize="18" FontFamily="Blooming Elegant Sans Regular" Foreground="#afafae"/>
-            <PasswordBox Name="password"  BorderThickness="0" FontSize="18" Password="Hello"></PasswordBox>
+            <PasswordBox Name="password"  BorderThickness="0" FontSize="18" Password="123"></PasswordBox>
 
             <Separator></Separator>
 

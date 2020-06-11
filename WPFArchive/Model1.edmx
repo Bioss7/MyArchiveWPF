@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DbArchiveModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DbArchiveModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AcademicLeave">
           <Key>
             <PropertyRef Name="AcademicLeaveId" />
@@ -60,8 +60,8 @@
           </Key>
           <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPerson" Type="int" Nullable="false" />
-          <Property Name="NumberReception" Type="int" Nullable="false" />
-          <Property Name="DateReception" Type="datetime" Nullable="false" />
+          <Property Name="NumberReception" Type="int" />
+          <Property Name="DateReception" Type="datetime" />
           <Property Name="Position" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NumberFired" Type="int" />
           <Property Name="DateFired" Type="datetime" />
@@ -233,7 +233,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Discipline_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
@@ -375,8 +377,7 @@
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbArchiveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -445,8 +446,8 @@
           </Key>
           <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdPerson" Type="Int32" Nullable="false" />
-          <Property Name="NumberReception" Type="Int32" Nullable="false" />
-          <Property Name="DateReception" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NumberReception" Type="Int32" />
+          <Property Name="DateReception" Type="DateTime" Precision="3" />
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NumberFired" Type="Int32" />
           <Property Name="DateFired" Type="DateTime" Precision="3" />

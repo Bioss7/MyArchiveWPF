@@ -38,7 +38,7 @@
                     <Button Click="Button_ClickAdd" Content="Добавить" Margin="5 0 5 5" Style="{StaticResource GreenBtn}"/>
                     <Button Click="Button_ClickUpdate" Content="Обновить" Margin="5 0 5 5" Style="{StaticResource GreenBtn}"/>
                     <Button Click="Button_ClickRemove" Content="Удалить" Margin="5 0 5 5" Style="{StaticResource GreenBtn}"/>
-                    <Button Content="Формирование" Click="Button_Click"/>
+                    <Button Content="Формирование" Click="Button_Click" Visibility="Collapsed"/>
                 </StackPanel>
             </GroupBox>
         </Grid>

@@ -31,7 +31,10 @@ namespace WPFArchive
             GroupCB.ItemsSource = groupStudent;
             GroupCb.ItemsSource = groupStudent;
             QualificationCB.ItemsSource = db.Qualification.ToList();
-            SpecialtyCB.ItemsSource = db.Specialty.ToList();    
+            SpecialtyCB.ItemsSource = db.Specialty.ToList();
+            CbSpec.ItemsSource = db.Specialty.ToList();
+
+
         }
        
 
@@ -41,57 +44,67 @@ namespace WPFArchive
             PersonalDocument personalDocument = new PersonalDocument();
             OrderList orderList = new OrderList();
 
-            if (personalDocument != null)
+            try
             {
+                if (personalDocument != null)
+                {
 
-                // Приказ
-                //personalDocument.DateOrder = DpDateOrder.SelectedDate;
-                //personalDocument.NumberOrder = TbNumberOrder.Text;
-                //personalDocument.TitleOrder = TbNumberOrder.Text;
-                ///
+                    // Приказ
+                    //personalDocument.DateOrder = DpDateOrder.SelectedDate;
+                    //personalDocument.NumberOrder = TbNumberOrder.Text;
+                    //personalDocument.TitleOrder = TbNumberOrder.Text;
+                    ///
 
+
+
+                    personalDocument.NumberPersonalDocument = NumberPersonalDocumentTB.Text;
+                    personalDocument.NumberInventory = NumberInventoryTB.Text;
+                    personalDocument.ShelfLife = Convert.ToInt16(ShelfLifeTB.Text);
+
+                    db.PersonalDocument.Add(personalDocument);
+                    //db.OrderList.Add(orderList);
+                    db.SaveChanges();
+                }
+
+
+
+                if (person != null)
+                {
+                    person.Lastname = LastNameTB.Text;
+                    person.Firstname = FirstTB.Text;
+                    person.Middlename = MiddleNameTB.Text;
+                    person.DateofBirth = Convert.ToDateTime(DateofBirthDP.SelectedDate);
+                    person.IdPersonalDocument = personalDocument.PersonalDocumentId;
+                    person.Аddress = TbAdress.Text;
+                    person.NumberPhone = TbNumberPhone.Text;
+
+                    //person.IdOrderList = orderList.IdOrderList;
+
+
+
+
+                    db.Person.Add(person);
+                    db.SaveChanges();
+
+                    orderList.IdPerson = person.PersonId;
+                    orderList.DateOrder = DpDateOrder.SelectedDate;
+                    orderList.NumberOrder = TbNumberOrder.Text;
+                    orderList.TitleOrder = TbTitleOrder.Text;
+
+                    db.OrderList.Add(orderList);
+                    db.SaveChanges();
+                    GetOrderPerson = person.PersonId;
+                }
+
+                MessageBox.Show("Добавлен!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Поля не заполнены или введены некорректные данные!");
                 
-
-                personalDocument.NumberPersonalDocument = NumberPersonalDocumentTB.Text;
-                personalDocument.NumberInventory = NumberInventoryTB.Text;
-                personalDocument.ShelfLife = Convert.ToInt16(ShelfLifeTB.Text);
-
-                db.PersonalDocument.Add(personalDocument);
-                //db.OrderList.Add(orderList);
-                db.SaveChanges();
             }
 
-
-
-            if (person != null)
-            {
-                person.Lastname = LastNameTB.Text;
-                person.Firstname = FirstTB.Text;
-                person.Middlename = MiddleNameTB.Text;
-                person.DateofBirth = Convert.ToDateTime(DateofBirthDP.SelectedDate);
-                person.IdPersonalDocument = personalDocument.PersonalDocumentId;
-                person.Аddress = TbAdress.Text;
-                person.NumberPhone = TbNumberPhone.Text;
-
-                //person.IdOrderList = orderList.IdOrderList;
-                
-                
-                
-
-                db.Person.Add(person);
-                db.SaveChanges();
-
-                orderList.IdPerson = person.PersonId;
-                orderList.DateOrder = DpDateOrder.SelectedDate;
-                orderList.NumberOrder = TbNumberOrder.Text;
-                orderList.TitleOrder = TbNumberOrder.Text;
-
-                db.OrderList.Add(orderList);
-                db.SaveChanges();
-                GetOrderPerson = person.PersonId;
-            }
-
-            MessageBox.Show("Добавлен!");
+            
 
             // Добавление студента выпускника
             if (check1.IsChecked == true)
@@ -142,19 +155,27 @@ namespace WPFArchive
             // Добавление отчисленного
             if (check2.IsChecked == true)
             {
-                Student student = new Student()
+                try
                 {
-                    IdPerson = person.PersonId,
-                    //EnrollmentNumber = Convert.ToInt32(EnrollmentNumberTb.Text),
-                    //EnrollmentDate = Convert.ToDateTime(EnrollmentDateDp.SelectedDate),
-                    //DeductionNumber = Convert.ToInt32(DeductionNumberTb.Text),
-                    //DeductionDate = Convert.ToDateTime(DeductionDateDp.SelectedDate),
-                    Reasonfordeduction = ReasonfordeductionTb.Text,
-                    NumberGroup = Convert.ToInt32(GroupCb.SelectedValue)
-                };
+                    Student student = new Student()
+                    {
+                        IdPerson = person.PersonId,
+                        //EnrollmentNumber = Convert.ToInt32(EnrollmentNumberTb.Text),
+                        //EnrollmentDate = Convert.ToDateTime(EnrollmentDateDp.SelectedDate),
+                        //DeductionNumber = Convert.ToInt32(DeductionNumberTb.Text),
+                        //DeductionDate = Convert.ToDateTime(DeductionDateDp.SelectedDate),
+                        //Reasonfordeduction = ReasonfordeductionTb.Text,
+                        NumberGroup = Convert.ToInt32(GroupCb.SelectedValue)
+                    };
 
-                db.Student.Add(student);
-                db.SaveChanges();
+                    db.Student.Add(student);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    MessageBox.Show("Поля не заполнены или введены некорректные данные!");
+                }
+               
             }
             // Добавление сотрудники
             if (check3.IsChecked == true)
@@ -162,12 +183,12 @@ namespace WPFArchive
                 Employee employee = new Employee()
                 {
                     IdPerson = person.PersonId,
-                    NumberReception = Convert.ToInt32(NumberReceptionTB.Text),
-                    DateReception = Convert.ToDateTime(DateReceptionDP.SelectedDate),
+                    //NumberReception = Convert.ToInt32(NumberReceptionTB.Text),
+                    //DateReception = Convert.ToDateTime(DateReceptionDP.SelectedDate),
                     Position = PositionTB.Text,
-                    NumberFired = Convert.ToInt32(NumberFiredTB.Text),
-                    DateFired = Convert.ToDateTime(DateFiredDP.SelectedDate),
-                    СauseFired = СauseFired.Text,
+                    //NumberFired = Convert.ToInt32(NumberFiredTB.Text),
+                    //DateFired = Convert.ToDateTime(DateFiredDP.SelectedDate),
+                    //СauseFired = СauseFired.Text,
                     PersonalNumber = TbPersonalNumber.Text
                     
                 };
@@ -195,10 +216,10 @@ namespace WPFArchive
             disciplineWindow.Show();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Click(object sender, RoutedEventArgs e) // Настройки
         {
-            TableWindow tableWindow = new TableWindow();
-            tableWindow.ShowDialog();
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Show();
         }
 
         private void SearchBtn(object sender, RoutedEventArgs e)
@@ -250,5 +271,66 @@ namespace WPFArchive
             OrderWindow orderWindow = new OrderWindow(0);
             orderWindow.Show();
         }
+
+        private void check3_Checked(object sender, RoutedEventArgs e)
+        {
+            //if(check3.IsChecked == true)
+            //{
+            //    DisciplineBtnAdd.IsEnabled = false;
+            //}
+            //else
+            //{
+            //    DisciplineBtnAdd.IsEnabled = true;
+            //}
+
+        }
+
+        private void check1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void check3_Click(object sender, RoutedEventArgs e)
+        {
+            if (check3.IsChecked == true)
+            {
+                DisciplineBtnAdd.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                DisciplineBtnAdd.Visibility = Visibility.Visible;
+            }
+        }
+
+        //private void BtnClear(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+        private void BtnClear(object sender, RoutedEventArgs e)
+        {
+            ClearsElement();
+        }
+
+        void ClearsElement()
+        {
+            LastNameTB.Text = string.Empty;
+            FirstTB.Text = string.Empty;
+            MiddleNameTB.Text = string.Empty;
+            DateofBirthDP.SelectedDate = null;
+            TbAdress.Text = string.Empty;
+            TbNumberPhone.Text = string.Empty;
+            NumberPersonalDocumentTB.Text = string.Empty;
+            NumberInventoryTB.Text = string.Empty;
+            ShelfLifeTB.Text = string.Empty;
+            DpDateOrder.SelectedDate = null;
+            TbNumberOrder.Text = string.Empty;
+            TbTitleOrder.Text = string.Empty;
+            check1.IsChecked = false;
+            check2.IsChecked = false;
+            check3.IsChecked = false;
+        }
+
+        
+
     }
 }
