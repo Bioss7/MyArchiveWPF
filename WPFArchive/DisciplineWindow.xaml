@@ -14,8 +14,13 @@
         <Grid Grid.Row="0" Grid.Column="0">
             <GroupBox Header="Добавление дисциплины" Margin="5">
                 <StackPanel>
-                    <TextBlock Text="Код студента" HorizontalAlignment="Left" Margin="5 5 5 0"/>
-                    <TextBox x:Name="StudentTb" Text="{Binding ElementName=GridStudent, Path=SelectedItem.StudentId}" Margin="5 0 5 5" />
+                    <GroupBox Header="Поиск" Margin="5">
+                        <StackPanel>
+                            <TextBox x:Name="TbSearch" TextChanged="TbSearch_TextChanged" />
+                        </StackPanel>
+                    </GroupBox>
+                    <TextBlock Text="№ Студента" HorizontalAlignment="Left" Margin="5 5 5 0"/>
+                    <TextBox x:Name="StudentTb" Text="{Binding ElementName=GridStudent, Path=SelectedItem.StudentId}" Margin="5 0 5 5" TextChanged="StudentTb_TextChanged" />
                     <TextBlock Text="Наименование дисциплины" HorizontalAlignment="Left" Margin="5 5 5 0"/>
                     <ComboBox Name="DisciplineListCB" ItemsSource="{Binding DisciplineList}" DisplayMemberPath="DisciplineName"  SelectedValuePath="DisciplineListId" SelectedValue="{Binding Path=DisciplineListId}" Margin="5 0 5 5" />
                     <TextBlock Text="Количество часов" HorizontalAlignment="Left" Margin="5 5 5 0"/>
@@ -34,20 +39,24 @@
                 <RowDefinition Height="224*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <DataGrid x:Name="GridDiscipline" AutoGenerateColumns="False" Margin="5">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Код студента" Binding="{Binding IdStudent}"/>
-                        <DataGridTextColumn Header="Наименование дисцплины" Binding="{Binding DisciplineList.DisciplineName}"/>
-                        <DataGridTextColumn Header="Количество часов" Binding="{Binding NumberOfHours}"/>
-                        <DataGridTextColumn Header="Оценка" Binding="{Binding Rating}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+
+                <GroupBox Header="Оценки" Margin="5">
+                    <DataGrid x:Name="GridDiscipline" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№ Студента" Binding="{Binding IdStudent}"/>
+                            <DataGridTextColumn Header="Наименование дисцплины" Binding="{Binding DisciplineList.DisciplineName}"/>
+                            <DataGridTextColumn Header="Количество часов" Binding="{Binding NumberOfHours}"/>
+                            <DataGridTextColumn Header="Оценка" Binding="{Binding Rating}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <GroupBox Header="Студенты" Margin="5">
                     <DataGrid x:Name="GridStudent" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Код студента" Binding="{Binding StudentId}"/>
+                            <DataGridTextColumn Header="№ Студента" Binding="{Binding StudentId}"/>
                             <DataGridTextColumn Header="Фамилия" Binding="{Binding Person.Lastname}"/>
                             <DataGridTextColumn Header="Имя" Binding="{Binding Person.Firstname}" />
                             <DataGridTextColumn Header="Отчество" Binding="{Binding Person.Middlename}"/>

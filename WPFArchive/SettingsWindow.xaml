@@ -20,7 +20,7 @@
             <StackPanel>
                 <GroupBox Header="Добавление группы">
                     <StackPanel>
-                        <DataGrid x:Name="DgGroup" AutoGenerateColumns="False" Width="auto">
+                        <DataGrid x:Name="DgGroup" AutoGenerateColumns="False" Width="auto" GridLinesVisibility="None" HorizontalAlignment="Stretch">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Группа" Binding="{Binding NumberGroup}"/>
                             </DataGrid.Columns>
@@ -33,7 +33,7 @@
                 </GroupBox>
                 <GroupBox Header="Добавление квалификации">
                     <StackPanel>
-                        <DataGrid x:Name="DgQ" AutoGenerateColumns="False">
+                        <DataGrid x:Name="DgQ" AutoGenerateColumns="False" GridLinesVisibility="None" HorizontalAlignment="Stretch">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Квалификация" Width="auto" Binding="{Binding NameQualification}"/>
                             </DataGrid.Columns>
@@ -47,9 +47,9 @@
                 </GroupBox>
                 <GroupBox Header="Добавление специальности">
                     <StackPanel>
-                        <DataGrid x:Name="DgS" AutoGenerateColumns="False">
+                        <DataGrid x:Name="DgS" AutoGenerateColumns="False" HorizontalAlignment="Stretch" GridLinesVisibility="None">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Специальность" Width="auto" Binding="{Binding SpecialtyName}"/>
+                                <DataGridTextColumn Header="Специальность" Width="auto" Binding="{Binding SpecialtyName}" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBlock Text="Специальность"/>

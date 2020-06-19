@@ -12,7 +12,7 @@
             <RowDefinition Height="189*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <DataGrid x:Name="DgOrderList" AutoGenerateColumns="False" SelectedIndex="0">
+            <DataGrid x:Name="DgOrderList" AutoGenerateColumns="False" SelectedIndex="0" GridLinesVisibility="None">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding IdOrderList}"/>
                     <DataGridTextColumn Header="№ Человека" Binding="{Binding Person.PersonId}"/>
@@ -42,13 +42,13 @@
                 <TextBox x:Name="TbTitleOrder" TextWrapping="Wrap"  Margin="5 0 5 5"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <Button x:Name="BtnAddOrder" Click="BtnAddOrder_Click" Content="Добавить приказ" Style="{StaticResource GreenBtn}" Margin="5" />
-                <Button x:Name="BtnDelOrder" Click="BtnDelOrder_Click" Content="Удалить" Style="{StaticResource GreenBtn}" Margin="5"/>
                 <GroupBox Header="Поиск">
                     <StackPanel>
                         <TextBox x:Name="TbSearch" SelectionChanged="TbSearch_SelectionChanged" />
                     </StackPanel>
                 </GroupBox>
+                <Button x:Name="BtnAddOrder" Click="BtnAddOrder_Click" Content="Добавить приказ" Style="{StaticResource GreenBtn}" Margin="5" />
+                <Button x:Name="BtnDelOrder" Click="BtnDelOrder_Click" Content="Удалить" Style="{StaticResource GreenBtn}" Margin="5"/>
             </StackPanel>
         </Grid>
     </Grid>

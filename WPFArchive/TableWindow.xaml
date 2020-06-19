@@ -53,6 +53,7 @@
                                                 <TextBlock Text="{Binding Person.PersonalDocument.NumberInventory}" />
                                                 <TextBlock Text="Срок хранения" />
                                                 <TextBlock Text="{Binding Person.PersonalDocument.ShelfLife}" />
+                                                <Button x:Name="OrderStudent" Style="{StaticResource GreenBtn}" Content="Посмотреть приказы" Click="OrderStudent_Click"/>
                                             </StackPanel>
                                         </GroupBox>
 
@@ -431,6 +432,7 @@
                                                 <TextBox x:Name="NumberInventoryEmployeeTB"  Margin="5 0 5 5" />
                                                 <TextBlock Text="Срок хранения" Margin="5 0 5 0"/>
                                                 <TextBox x:Name="ShelfLifeEmployeeTB" Margin="5 0 5 5" />
+                                               
                                             </StackPanel>
                                         </GroupBox>
                                         <StackPanel Margin="5">
@@ -523,9 +525,10 @@
                                                     <TextBlock Text="{Binding Person.PersonalDocument.NumberInventory}" />
                                                     <TextBlock Text="Срок хранения" />
                                                     <TextBlock Text="{Binding Person.PersonalDocument.ShelfLife}" />
+                                                    <Button Name="BtnOrderEmployee" Content="Посмотреть приказы" Style="{StaticResource GreenBtn}" Click="BtnOrderEmployee_Click"/>
                                                 </StackPanel>
                                             </GroupBox>
-                                            <GroupBox Header="Приказ о приеме" Margin="5">
+                                            <!--<GroupBox Header="Приказ о приеме" Margin="5">
                                                 <StackPanel>
                                                     <TextBlock Text="Номер №:" Margin="5 5 5 0"/>
                                                     <TextBlock Text="{Binding NumberReception}" Margin="5 0 5 5"/>
@@ -542,15 +545,15 @@
                                                     <TextBlock Text="Дата:" Margin="5 5 5 0"/>
                                                     <TextBlock Text="{Binding DateFired, StringFormat=\{0:dd.MM.yy\}}" Margin="5 0 5 5"/>
                                                 </StackPanel>
-                                            </GroupBox>
+                                            </GroupBox>-->
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <GroupBox Header="Причина увольнения: " Margin="0 5 5 5" BorderThickness="0">
+                                        <!--<GroupBox Header="Причина увольнения: " Margin="0 5 5 5" BorderThickness="0">
                                             <Grid>
                                                 <TextBlock Text="{Binding СauseFired}" HorizontalAlignment="Stretch" TextWrapping="Wrap" Margin="5" ScrollViewer.VerticalScrollBarVisibility="Auto" />
                                             </Grid>
-                                        </GroupBox>
+                                        </GroupBox>-->
                                     </Grid>
 
 

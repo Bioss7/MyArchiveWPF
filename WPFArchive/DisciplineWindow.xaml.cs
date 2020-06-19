@@ -74,5 +74,23 @@ namespace WPFArchive
             GridStudent.ItemsSource = db.Student.ToList();
 
         }
+
+        private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           
+                var q = db.Student.ToList().Where(x => (x.Person.Lastname + " " + x.Person.Firstname + " " + x.Person.Middlename)
+               .ToLower()
+               .Contains(TbSearch.Text.ToLower())).ToList();
+                GridStudent.ItemsSource = q;
+          
+        }
+
+        private void StudentTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var q = db.Discipline.ToList().Where(x => (x.Student.StudentId + " ")
+            .ToLower()
+            .Contains(StudentTb.Text.ToLower()));
+            GridDiscipline.ItemsSource = q;
+        }
     }
 }

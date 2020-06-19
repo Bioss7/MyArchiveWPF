@@ -85,6 +85,7 @@
                     <Button Click="ReportsBtn" Content="Справки" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
                     <Button Click="ActsBtn" Content="Акты" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
                     <Button Click="BtnOrder" Content="Приказы" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
+                    <Button Content="Отчет" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
                     <Button Click="BtnClear" Content="Очистить поля" Margin="10 5 10 0" Style="{StaticResource GreenBtn}"/>
                     <!--<Button x:Name="BtnAddOrder" Click="BtnAddOrder_Click" Content="Добавить приказ" Style="{StaticResource GreenBtn}" Margin="10 5 10 0"/>
                     <Button x:Name="DisciplineBtnAdd" Click="DisciplineBtnAdd_Click" Content="Добавить оценки" Style="{StaticResource GreenBtn}" Margin="10 5 10 0" />-->

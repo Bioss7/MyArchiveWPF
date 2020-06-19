@@ -411,5 +411,19 @@ namespace WPFArchive
                 OrderWindow orderWindow = new OrderWindow(num);
                 orderWindow.Show();
         }
+
+        private void OrderStudent_Click(object sender, RoutedEventArgs e)
+        {
+            int num = (GridStudents.SelectedItem as Student).Person.PersonId;
+            OrderWindow orderWindow = new OrderWindow(num);
+            orderWindow.Show();
+        }
+
+        private void BtnOrderEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            int num = (GridFired.SelectedItem as Employee).Person.PersonId;
+            OrderWindow orderWindow = new OrderWindow(num);
+            orderWindow.Show();
+        }
     }
 }
